@@ -1,5 +1,5 @@
 {
-  "name": "pdf4me-clientapi-javascript",
+  "name": "pdf4me-client",
   "version": "1.0.0",
   "description": "",
   "author": "Pdf4me",
@@ -7,7 +7,7 @@
   "homepage": "https://developer.pdf4me.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pdf4me/pdf4me-clientapi-js.git"
+    "url": "git+https://github.com/pdf4me/pdf4me-clientapi-javascript.git"
   },
   "main": "index.js",
   "scripts": {

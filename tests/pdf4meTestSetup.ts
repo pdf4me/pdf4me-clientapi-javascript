@@ -5,9 +5,7 @@ export class Pdf4meTestSetup {
   private pdf4meClient: Pdf4meClient;
 
   constructor() {
-    let token =
-      process.env.PDF4ME_API_TOKEN ||
-      "YjQ3MDZkYzUtODMzNy00NjkyLWI3MzYtOGViMTMxNzI2ZjI2OnVHb1MwVEQ4dEFheFVCbUtMQ0J2amR0WkUzc1JGTUtp";
+    let token = process.env.PDF4ME_API_TOKEN;
     this.pdf4meClient = new Pdf4meClient(token);
   }
 
