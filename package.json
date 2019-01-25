@@ -1,6 +1,6 @@
 {
   "name": "pdf4me-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "Pdf4me",
   "license": "MIT",
@@ -10,8 +10,10 @@
     "url": "git+https://github.com/pdf4me/pdf4me-clientapi-javascript.git"
   },
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
+    "build-dist": "node ./scripts/build-dist.js",
     "test": "mocha -r ts-node/register --timeout 30000 tests/**/*.test.ts"
   },
   "dependencies": {
