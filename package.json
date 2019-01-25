@@ -1,0 +1,34 @@
+{
+  "name": "pdf4me-clientapi-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Pdf4me",
+  "license": "MIT",
+  "homepage": "https://developer.pdf4me.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdf4me/pdf4me-clientapi-js.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha -r ts-node/register --timeout 30000 tests/**/*.test.ts"
+  },
+  "dependencies": {
+    "@types/request": "^2.48.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^5.2.0",
+    "shelljs": "^0.8.3",
+    "ts-node": "^8.0.1",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.2.4"
+  }
+}
