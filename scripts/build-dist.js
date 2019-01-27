@@ -19,7 +19,6 @@ $sh.cp("./README.md", "./dist/");
 
 // create package.json
 const packageConfig = require("../package.json");
-console.log(packageConfig);
 delete packageConfig.devDependencies;
 
 fs.writeFileSync(
