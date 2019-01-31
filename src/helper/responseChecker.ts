@@ -1,4 +1,4 @@
-import { Pdf4meClientException } from "../helper/Pdf4meExceptions";
+import { Pdf4meClientException } from "../helper/pdf4meExceptions";
 import { DocLog, Document } from "../model/model";
 
 export default class ResponseChecker {

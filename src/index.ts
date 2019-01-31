@@ -48,7 +48,7 @@ export { CreatePdfA, CreatePdfARes, PdfAAction } from "./model/pdfA";
 import {
   Pdf4meBackendException as Pdf4meBException,
   Pdf4meClientException as Pdf4meCException
-} from "./helper/Pdf4meExceptions";
+} from "./helper/pdf4meExceptions";
 
 export type Pdf4meBackendException = Pdf4meBException;
 export const Pdf4meBackendException = Pdf4meBException;

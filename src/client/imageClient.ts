@@ -1,6 +1,6 @@
 import { Stream } from "stream";
 import { Pdf4meClient } from "./pdf4meClient";
-import { Pdf4meClientException } from "../helper/Pdf4meExceptions";
+import { Pdf4meClientException } from "../helper/pdf4meExceptions";
 import { CreateImages, CreateImagesRes } from "./../model/image";
 
 export class ImageClient {
