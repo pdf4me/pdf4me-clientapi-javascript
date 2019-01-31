@@ -11,8 +11,8 @@ export default class CustomHttp {
   constructor(apitoken: string) {
     this.responseChecker = new ResponseChecker();
     this.apitoken = apitoken;
-    this.apiUrl = "https://api-dev.pdf4me.com"; //"https://api.pdf4me.com";
-    this.userAgent = "pdf4me-js/0.8.5";
+    this.apiUrl = "https://api-dev.pdf4me.com";
+    this.userAgent = "pdf4me-js/0.9.5";
   }
 
   /**

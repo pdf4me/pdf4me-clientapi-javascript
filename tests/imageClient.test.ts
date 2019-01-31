@@ -129,7 +129,7 @@ describe("Image Client", () => {
       ).to.not.be.eventually.rejected;
     });
 
-    it("Response contains images", async () => {
+    it.only("Response contains images", async () => {
       const result = await imageClient.createThumbnails(
         2000,
         "1,3",
