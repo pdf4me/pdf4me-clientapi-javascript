@@ -7,7 +7,7 @@ $sh.rm("-rf", "./dist");
 const buildRes = $sh.exec("tsc");
 if (buildRes.code !== 0) {
   console.log(buildRes.stderr);
-  return;
+  return buildRes.code;
 }
 
 // patch version

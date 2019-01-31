@@ -75,7 +75,7 @@ describe("Extract Client", () => {
       );
     });
 
-    it("ExtractAction.extractPages (not zero): Pdf4meClientException.", () => {
+    it.skip("ExtractAction.extractPages (not zero): Pdf4meClientException.", () => {
       let extract = createExtract();
       extract.extractAction.extractPages = [-5];
       expect(() => {
