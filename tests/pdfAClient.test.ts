@@ -18,7 +18,7 @@ const createCreatePdfA = (): CreatePdfA => {
   };
 };
 
-describe.only("PdfA Client", () => {
+describe("PdfA Client", () => {
   /* ----------------pdfA--------------------------*/
   describe("method: pdfA ", () => {
     it("Response is not rejected.", async () => {

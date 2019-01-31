@@ -1,7 +1,7 @@
 import { Stream } from "stream";
-import { Pdf4meClient } from "../client/pdf4meClient";
+import { Pdf4meClient } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/Pdf4meExceptions";
-import { Stamp, StampRes } from "./../model/stamp";
+import { Stamp, StampRes } from "../model/stamp";
 
 export class StampClient {
   pdf4meClient: Pdf4meClient;

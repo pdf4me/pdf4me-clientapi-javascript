@@ -1,5 +1,5 @@
 import { Stream } from "stream";
-import { Pdf4meClient } from "../client/pdf4meClient";
+import { Pdf4meClient } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/Pdf4meExceptions";
 import { CreatePdfA, CreatePdfARes } from "./../model/pdfA";
 
