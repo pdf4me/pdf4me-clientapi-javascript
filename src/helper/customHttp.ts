@@ -1,6 +1,6 @@
 import * as request from "request";
 import ResponseChecker from "../helper/responseChecker";
-import { Pdf4meBackendException } from "./Pdf4meExceptions";
+import { Pdf4meBackendException } from "./pdf4meExceptions";
 
 export default class CustomHttp {
   responseChecker: ResponseChecker;
