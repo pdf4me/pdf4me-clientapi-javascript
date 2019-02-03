@@ -1,5 +1,5 @@
 {
-  "name": "pdf4me-client",
+  "name": "pdf4me",
   "version": "0.9.5",
   "description": "",
   "author": "Pdf4me",
@@ -14,7 +14,8 @@
   "scripts": {
     "build": "tsc",
     "build-dist": "node ./scripts/build-dist.js",
-    "test": "mocha -r ts-node/register --timeout 30000 tests/**/*.test.ts"
+    "publish-dist": "node ./scripts/publish-dist.js",
+    "test": "mocha -r ts-node/register --timeout 30000 tests/**/*.test.ts --reporter mocha-unit-reporter --reporter-options mochaFile=./test-output/test-results.xml"
   },
   "dependencies": {
     "request": "^2.88.0"
@@ -28,6 +29,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.18.0",
     "shelljs": "^0.8.3",
     "ts-node": "^8.0.1",
     "tslint-config-standard": "^8.0.1",
