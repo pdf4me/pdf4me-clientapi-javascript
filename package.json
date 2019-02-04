@@ -15,7 +15,8 @@
     "build": "tsc",
     "build-dist": "node ./scripts/build-dist.js",
     "publish-dist": "node ./scripts/publish-dist.js",
-    "test": "mocha -r ts-node/register --timeout 30000 tests/**/*.test.ts --reporter mocha-unit-reporter --reporter-options mochaFile=./test-output/test-results.xml"
+    "test": "mocha -r ts-node/register --reporter mocha-junit-reporter --timeout 30000 tests/**/*.test.ts",
+    "test2": "mocha -r ts-node/register --timeout 30000 tests/**/*.test.ts"
   },
   "dependencies": {
     "request": "^2.88.0"

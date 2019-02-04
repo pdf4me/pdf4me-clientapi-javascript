@@ -1,4 +1,6 @@
 node_modules
 dist
 out
+test-results.xml
+.xml
 setenv.bat
