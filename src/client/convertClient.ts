@@ -1,5 +1,5 @@
 import { Stream } from "stream";
-import { Pdf4meClient } from "./pdf4meClient";
+import { Pdf4meClient, FileInfo } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/pdf4meExceptions";
 import { ConvertToPdf, ConvertToPdfRes } from "./../model/convert";
 
@@ -40,10 +40,10 @@ export class ConvertClient {
 
   /**
    * The provided Non-PDF file gets converted to a PDF.
-   * @param {Buffer} file to be converted to PDF
    * @param {string} fileName the name of the provided file (including the file extension)
+   * @param {Buffer} file to be converted to PDF
    */
-  public convertFileToPdf(fileName: string, file: Stream) {
+  public convertFileToPdf(fileName: string, file: Stream | FileInfo) {
     return new Promise<Buffer>((resolve, reject) => {
       this.pdf4meClient.customHttp
         .postFormData<Buffer>("/Convert/ConvertFileToPdf", {

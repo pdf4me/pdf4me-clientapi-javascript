@@ -1,5 +1,5 @@
 import { Stream } from "stream";
-import { Pdf4meClient } from "./pdf4meClient";
+import { Pdf4meClient, FileInfo } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/pdf4meExceptions";
 import { CreatePdfA, CreatePdfARes } from "./../model/pdfA";
 
@@ -39,7 +39,10 @@ export class PdfAClient {
    * @param pdfCompliance PDF/A compliance level
    * @param file to be converted to PDF/A
    */
-  public createPdfA(pdfCompliance: string, file: Stream): Promise<Buffer> {
+  public createPdfA(
+    pdfCompliance: string,
+    file: Stream | FileInfo
+  ): Promise<Buffer> {
     return new Promise<Buffer>((resolve, reject) => {
       this.pdf4meClient.customHttp
         .postFormData<Buffer>("/PdfA/CreatePdfA", {

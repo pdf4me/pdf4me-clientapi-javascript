@@ -34,15 +34,14 @@ export default class ResponseChecker {
     }
 
     // extract docs logs
-    var docLogs: Array<DocLog> = [];
-    var i;
-    for (i = 0; i < docs.length; i++) {
+    let docLogs: Array<DocLog> = [];
+    for (let i = 0; i < docs.length; i++) {
       docLogs = docLogs.concat(docs[i].docLogs as Array<DocLog>);
     }
 
     // check all docLogs for errors
-    for (i = 0; i < docLogs.length; i++) {
-      let currentLog = docLogs[i];
+    for (let i = 0; i < docLogs.length; i++) {
+      const currentLog = docLogs[i];
       if (currentLog != undefined && Number(currentLog.docLogLevel) == 3) {
         throw new Pdf4meClientException(currentLog.message as string);
       }

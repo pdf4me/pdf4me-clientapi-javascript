@@ -1,5 +1,5 @@
 import { Stream } from "stream";
-import { Pdf4meClient } from "./pdf4meClient";
+import { Pdf4meClient, FileInfo } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/pdf4meExceptions";
 import { Extract, ExtractRes } from "./../model/extract";
 
@@ -38,7 +38,7 @@ export class ExtractClient {
    * @param file to extract the pages from
    * @param pageNrs the page numbers which will be extracted, number 1 corresponds to the first page.
    */
-  public extractPages(pageNrs: string, file: Stream) {
+  public extractPages(pageNrs: string, file: Stream | FileInfo) {
     return new Promise<Buffer>((resolve, reject) => {
       this.pdf4meClient.customHttp
         .postFormData<Buffer>("/Extract/ExtractPages", {

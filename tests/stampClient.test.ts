@@ -10,7 +10,7 @@ const pdf4meClient = new Pdf4meTestSetup().getPdf4meClient();
 const stampClient = new StampClient(pdf4meClient);
 
 function createStamp(): Stamp {
-  let Stamp: Stamp = {
+  return {
     document: { docData: testFiles.getBase64FileContent(testFiles.files.pdf1) },
     stampAction: {
       text: { value: "EXAMPLE TEXT" },
@@ -20,7 +20,6 @@ function createStamp(): Stamp {
       alignY: "middle"
     }
   };
-  return Stamp;
 }
 
 describe("Stamp Client", () => {
@@ -33,7 +32,7 @@ describe("Stamp Client", () => {
     });
 
     it("Document (not undefined): Pdf4meClientException.", async () => {
-      let stamp = createStamp();
+      const stamp = createStamp();
       stamp.document = undefined as any;
       expect(stampClient.stamp(stamp)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -42,7 +41,7 @@ describe("Stamp Client", () => {
     });
 
     it("Document.docData (not undefined): Pdf4meClientException.", async () => {
-      let stamp = createStamp();
+      const stamp = createStamp();
       stamp.document.docData = undefined as any;
       expect(stampClient.stamp(stamp)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -51,7 +50,7 @@ describe("Stamp Client", () => {
     });
 
     it("StampAction (not undefined): Pdf4meClientException.", async () => {
-      let stamp = createStamp();
+      const stamp = createStamp();
       stamp.stampAction = undefined as any;
       expect(stampClient.stamp(stamp)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -60,7 +59,7 @@ describe("Stamp Client", () => {
     });
 
     it("StampAction.alpha (not undefined): Pdf4meClientException.", async () => {
-      let stamp = createStamp();
+      const stamp = createStamp();
       stamp.stampAction.alpha = undefined as any;
       expect(stampClient.stamp(stamp)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -69,7 +68,7 @@ describe("Stamp Client", () => {
     });
 
     it("StampAction.image & StampAction.text (not both undefined): Pdf4meClientException.", async () => {
-      let stamp = createStamp();
+      const stamp = createStamp();
       stamp.stampAction.image = undefined as any;
       stamp.stampAction.text = undefined as any;
       expect(stampClient.stamp(stamp)).to.be.rejectedWith(

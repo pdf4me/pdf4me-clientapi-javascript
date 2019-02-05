@@ -1,6 +1,7 @@
 import * as request from "request";
 import ResponseChecker from "../helper/responseChecker";
 import { Pdf4meBackendException } from "./pdf4meExceptions";
+import { Stream } from "stream";
 
 export default class CustomHttp {
   responseChecker: ResponseChecker;
@@ -19,7 +20,7 @@ export default class CustomHttp {
     return new Promise((resolve, reject) => {
       const json = JSON.stringify(object);
 
-      let options = {
+      const options = {
         url: this.apiUrl + controller,
         headers: {
           "Content-Type": "application/json",
@@ -58,9 +59,11 @@ export default class CustomHttp {
     });
   }
 
-  postFormData<T>(controller: string, content: object): Promise<T> {
+  postFormData<T>(controller: string, content: any): Promise<T> {
     return new Promise((resolve, reject) => {
-      let options = {
+      process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
+
+      const options = {
         url: this.apiUrl + controller,
         headers: {
           "Content-Type": "multipart/form-data",
@@ -68,9 +71,26 @@ export default class CustomHttp {
           Authorization: "Basic " + this.apitoken,
           "User-Agent": this.userAgent
         },
-        formData: content,
+        proxy: "http://127.0.0.1:8888",
+        formData: {} as any,
         encoding: null
       };
+
+      Object.keys(content).forEach(key => {
+        if (content[key].data instanceof Buffer) {
+          options.formData[key] = {
+            value: content[key].data,
+            options: {
+              filename: content[key].fileName,
+              contentType: content[key].contentType
+                ? content[key].contentType
+                : "application/pdf"
+            }
+          };
+        } else {
+          options.formData[key] = content[key];
+        }
+      });
 
       request.post(options, (err, res, body) => {
         // check for error

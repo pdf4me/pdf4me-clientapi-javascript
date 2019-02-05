@@ -10,7 +10,7 @@ const pdf4meClient = new Pdf4meTestSetup().getPdf4meClient();
 const optimizeClient = new OptimizeClient(pdf4meClient);
 
 function createOptimize(): Optimize {
-  let Optimize: Optimize = {
+  const Optimize: Optimize = {
     document: { docData: testFiles.getBase64FileContent(testFiles.files.pdf1) },
     optimizeAction: { useProfile: true, profile: "max" }
   };
@@ -27,7 +27,7 @@ describe("Optimize Client", () => {
     });
 
     it("Document (not undefined): Pdf4meClientException.", async () => {
-      let optimize = createOptimize();
+      const optimize = createOptimize();
       optimize.document = undefined as any;
       expect(optimizeClient.optimize(optimize)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -36,7 +36,7 @@ describe("Optimize Client", () => {
     });
 
     it("Document.docData (not undefined): Pdf4meClientException.", async () => {
-      let optimize = createOptimize();
+      const optimize = createOptimize();
       optimize.document.docData = undefined as any;
       expect(optimizeClient.optimize(optimize)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -45,7 +45,7 @@ describe("Optimize Client", () => {
     });
 
     it("OptimizeAction (not undefined): Pdf4meClientException.", async () => {
-      let optimize = createOptimize();
+      const optimize = createOptimize();
       optimize.optimizeAction = undefined as any;
       expect(optimizeClient.optimize(optimize)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -54,7 +54,7 @@ describe("Optimize Client", () => {
     });
 
     it("OptimizeAction.useProfile (must be true): Pdf4meClientException.", async () => {
-      let optimize = createOptimize();
+      const optimize = createOptimize();
       optimize.optimizeAction.useProfile = false;
       expect(optimizeClient.optimize(optimize)).to.be.rejectedWith(
         Pdf4meClientException,

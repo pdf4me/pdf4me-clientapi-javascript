@@ -1,5 +1,5 @@
 import { Stream } from "stream";
-import { Pdf4meClient } from "./pdf4meClient";
+import { Pdf4meClient, FileInfo } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/pdf4meExceptions";
 import { Optimize, OptimizeRes } from "./../model/optimize";
 
@@ -39,7 +39,10 @@ export class OptimizeClient {
      * @param profile optimization profile (e.g. 'max' for maximal compression)
      * @param file to be optimized
      */
-  public optimizeByProfile(profile: string, file: Stream): Promise<Buffer> {
+  public optimizeByProfile(
+    profile: string,
+    file: Stream | FileInfo
+  ): Promise<Buffer> {
     return new Promise<Buffer>((resolve, reject) => {
       this.pdf4meClient.customHttp
         .postFormData<Buffer>("/Optimize/OptimizeByProfile", {

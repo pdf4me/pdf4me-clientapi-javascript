@@ -29,7 +29,7 @@ describe("Merge Client", () => {
     });
 
     it("Documents (not undefined): Pdf4meClientException.", async () => {
-      let merge = createMerge();
+      const merge = createMerge();
       merge.documents = undefined as any;
       expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -38,7 +38,7 @@ describe("Merge Client", () => {
     });
 
     it("Documents (not two documents): Pdf4meClientException.", async () => {
-      let merge = createMerge();
+      const merge = createMerge();
       merge.documents = [{ docData: undefined as any }];
       expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -47,7 +47,7 @@ describe("Merge Client", () => {
     });
 
     it("Documents[0] (not undefined): Pdf4meClientException.", async () => {
-      let merge = createMerge();
+      const merge = createMerge();
       merge.documents[0] = undefined as any;
       expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -56,7 +56,7 @@ describe("Merge Client", () => {
     });
 
     it("Documents[1] (not undefined): Pdf4meClientException.", async () => {
-      let merge = createMerge();
+      const merge = createMerge();
       merge.documents[1] = undefined as any;
       expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -65,7 +65,7 @@ describe("Merge Client", () => {
     });
 
     it("Documents[0].docData (not undefined): Pdf4meClientException.", async () => {
-      let merge = createMerge();
+      const merge = createMerge();
       merge.documents[0].docData = undefined as any;
       expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -74,7 +74,7 @@ describe("Merge Client", () => {
     });
 
     it("Documents[1].docData (not undefined): Pdf4meClientException.", async () => {
-      let merge = createMerge();
+      const merge = createMerge();
       merge.documents[1].docData = undefined as any;
       expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -83,7 +83,7 @@ describe("Merge Client", () => {
     });
 
     it("MergeAction (not undefined): Pdf4meClientException.", async () => {
-      let merge = createMerge();
+      const merge = createMerge();
       merge.mergeAction = undefined as any;
       expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,

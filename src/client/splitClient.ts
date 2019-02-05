@@ -1,5 +1,5 @@
 import { Stream } from "stream";
-import { Pdf4meClient } from "./pdf4meClient";
+import { Pdf4meClient, FileInfo } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/pdf4meExceptions";
 import { Split, SplitRes } from "./../model/split";
 
@@ -38,7 +38,7 @@ export class SplitClient {
    * @param pageNr determines after which page the split takes place
    * @param file to split into two
    */
-  public splitByPageNr(pageNr: number, file: Stream) {
+  public splitByPageNr(pageNr: number, file: Stream | FileInfo) {
     return new Promise<Array<Buffer>>((resolve, reject) => {
       return this.pdf4meClient.customHttp
         .postFormData<Buffer>("/Split/SplitByPageNr", {
@@ -64,7 +64,7 @@ export class SplitClient {
    * @param pageNr determines after which page the split takes place
    * @param file file to split recurringly
    */
-  public splitRecurring(pageNr: number, file: Stream) {
+  public splitRecurring(pageNr: number, file: Stream | FileInfo) {
     return new Promise<Array<Buffer>>((resolve, reject) => {
       return this.pdf4meClient.customHttp
         .postFormData<Buffer>("/Split/SplitRecurring", {
@@ -72,8 +72,8 @@ export class SplitClient {
           file: file
         })
         .then(function(response) {
-          let jsonResponse = JSON.parse(response.toString("utf-8"));
-          let pdfs: Buffer[] = [];
+          const jsonResponse = JSON.parse(response.toString("utf-8"));
+          const pdfs: Buffer[] = [];
           jsonResponse.forEach((element: string) => {
             pdfs.push(Buffer.from(element, "base64"));
           });

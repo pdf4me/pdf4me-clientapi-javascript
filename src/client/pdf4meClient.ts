@@ -1,6 +1,12 @@
 import CustomHttp from "./../helper/customHttp";
 import { Pdf4meClientException } from "./../helper/pdf4meExceptions";
 
+export interface FileInfo {
+  data: Buffer;
+  contentType?: string;
+  fileName?: string;
+}
+
 export class Pdf4meClient {
   customHttp: CustomHttp;
   apitoken: string;

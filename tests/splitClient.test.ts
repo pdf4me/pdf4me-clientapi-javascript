@@ -41,7 +41,7 @@ describe("Split Client", () => {
     });
 
     it("Document.docData (not undefined): Pdf4meClientException.", async () => {
-      let split = createSplit();
+      const split = createSplit();
       split.document.docData = undefined as any;
       expect(splitClient.split(split)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -50,7 +50,7 @@ describe("Split Client", () => {
     });
 
     it("SplitAction (not undefined): Pdf4meClientException.", async () => {
-      let split = createSplit();
+      const split = createSplit();
       split.splitAction = undefined as any;
       expect(splitClient.split(split)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -59,7 +59,7 @@ describe("Split Client", () => {
     });
 
     it("SplitAction.splitAfterPage (not undefined): Pdf4meClientException.", async () => {
-      let split = createSplit();
+      const split = createSplit();
       split.splitAction.splitAfterPage = undefined as any;
       expect(splitClient.split(split)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -69,7 +69,7 @@ describe("Split Client", () => {
     });
 
     it("SplitAction.splitAfterPage (not zero): Pdf4meClientException.", async () => {
-      let split = createSplit();
+      const split = createSplit();
       split.splitAction.splitAfterPage = 0;
       expect(splitClient.split(split)).to.be.rejectedWith(
         Pdf4meClientException,

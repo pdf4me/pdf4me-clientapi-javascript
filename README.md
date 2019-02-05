@@ -27,7 +27,7 @@ The Token is required to Authenticate with OAuth2. The Pdf4me Client Api provide
 const fs = require("fs");
 const pdf4me = require("pdf4me");
 
-let pdf4meClient = new pdf4me.Pdf4meClient(token);
+const pdf4meClient = new pdf4me.Pdf4meClient(token);
 
 /*
 The pdf4meClient object delivers the necessary authentication when instantiating
@@ -35,10 +35,10 @@ the different pdf4meClients such as for instance the mergeClient
 */
 
 // setup the mergeClient
-let mergeClient = new pdf4me.MergeClient(pdf4meClient);
+const mergeClient = new pdf4me.MergeClient(pdf4meClient);
 
 // merge
-let responsePromise = mergeClient.merge2Pdfs(
+const responsePromise = mergeClient.merge2Pdfs(
   fs.createReadStream("./myFirstPdf.pdf"),
   fs.createReadStream("./mySecondPdf.pdf")
 );

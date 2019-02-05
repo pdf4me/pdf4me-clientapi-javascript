@@ -1,5 +1,5 @@
 import { Stream } from "stream";
-import { Pdf4meClient } from "./pdf4meClient";
+import { Pdf4meClient, FileInfo } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/pdf4meExceptions";
 import { Stamp, StampRes } from "../model/stamp";
 
@@ -47,7 +47,7 @@ export class StampClient {
     pages: string,
     alignX: string,
     alignY: string,
-    file: Stream
+    file: Stream | FileInfo
   ): Promise<Buffer> {
     return new Promise<Buffer>((resolve, reject) => {
       this.pdf4meClient.customHttp

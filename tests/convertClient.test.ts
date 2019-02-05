@@ -70,12 +70,13 @@ describe("Convert Client", () => {
     // .txt file
     it(".txt file: Response is not rejected.", async () => {
       const convertToPdfReq = createConvertToPdf(testFiles.files.text);
-      expect(convertClient.convertToPdf(convertToPdfReq)).to.not.be.rejected;
+      const res = await convertClient.convertToPdf(convertToPdfReq);
+      expect(res.document).to.not.be.null;
     });
 
     /*
     it(".txt file: PDF document length is greater than the original's file length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertToPdf(
           createConvertToPdf(testFiles.textData, testFiles.textName)
         )
@@ -95,7 +96,7 @@ describe("Convert Client", () => {
     });
 
     it(".word doc: PDF document length is greater than the original's file length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertToPdf(
           createConvertToPdf(testFiles.wordData, testFiles.wordName)
         )
@@ -115,7 +116,7 @@ describe("Convert Client", () => {
     });
 
     it(".excel doc: PDF document length is greater than the original's file length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertToPdf(
           createConvertToPdf(testFiles.excelData, testFiles.excelName)
         )
@@ -135,7 +136,7 @@ describe("Convert Client", () => {
     });
 
     it(".eml file: PDF document length is greater than the original's file length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertToPdf(createConvertToPdf(testFiles.emlData, testFiles.emlName))
         .then(function(obj) {
           return obj["document"]["docData"].length;
@@ -153,7 +154,7 @@ describe("Convert Client", () => {
     });
 
     it(".msg file: PDF document length is greater than the original's file length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertToPdf(createConvertToPdf(testFiles.msgData, testFiles.msgName))
         .then(function(obj) {
           return obj["document"]["docData"].length;
@@ -171,7 +172,7 @@ describe("Convert Client", () => {
     });
 
     it(".jpg file: PDF document length is greater than the original's file length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertToPdf(createConvertToPdf(testFiles.jpgData, testFiles.jpgName))
         .then(function(obj) {
           return obj["document"]["docData"].length;
@@ -189,7 +190,7 @@ describe("Convert Client", () => {
     });
 
     it(".zip file: PDF document length is greater than zero and smaller than the original file length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertToPdf(createConvertToPdf(testFiles.zipData, testFiles.zipName))
         .then(function(obj) {
           return obj["document"]["docData"].length;
@@ -201,19 +202,27 @@ describe("Convert Client", () => {
 
   /* ------------------------ConvertFileToPdf------------------------------ */
   describe("method: convertFileToPdf", () => {
-    /*
-    // .txt file
-    it(".txt file: Response is not undefined.", () => {
+    it(".txt file: Response is not undefined.", async () => {
       return expect(
         convertClient.convertFileToPdf(
-          testFiles.textName,
-          testFiles.getTextStream()
+          testFiles.files.pdf1,
+          testFiles.getReadStream(testFiles.files.pdf1)
         )
       ).to.not.be.rejected;
     });
 
+    it(".txt file: Response is not undefined.", async () => {
+      return expect(
+        convertClient.convertFileToPdf(testFiles.files.pdf1, {
+          data: testFiles.getFileBuffer(testFiles.files.pdf1),
+          fileName: testFiles.files.pdf1,
+          contentType: "application/pdf"
+        })
+      ).to.not.be.rejected;
+    });
+    /*
     it(".txt file: PDF document length is greater than its original length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertFileToPdf(testFiles.textName, testFiles.getTextStream())
         .then(function(pdf: Buffer) {
           return pdf.toString("base64").length;
@@ -232,7 +241,7 @@ describe("Convert Client", () => {
     });
 
     it(".word doc file: PDF document length is greater than its original length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertFileToPdf(testFiles.wordName, testFiles.getWordStream())
         .then(function(pdf: Buffer) {
           return pdf.toString("base64").length;
@@ -251,7 +260,7 @@ describe("Convert Client", () => {
     });
 
     it(".excel doc file: PDF document length is greater than its original length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertFileToPdf(testFiles.excelName, testFiles.getExcelStream())
         .then(function(pdf: Buffer) {
           return pdf.toString("base64").length;
@@ -270,7 +279,7 @@ describe("Convert Client", () => {
     });
 
     it(".eml file: PDF document length is greater than its original length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertFileToPdf(testFiles.emlName, testFiles.getEmlStream())
         .then(function(pdf: Buffer) {
           return pdf.toString("base64").length;
@@ -290,7 +299,7 @@ describe("Convert Client", () => {
     });
 
     it(".msg file: PDF document length is greater than its original length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertFileToPdf(testFiles.msgName, testFiles.getMsgStream())
         .then(function(pdf: Buffer) {
           return pdf.toString("base64").length;
@@ -309,7 +318,7 @@ describe("Convert Client", () => {
     });
 
     it(".jpg file: PDF document length is greater than its original length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertFileToPdf(testFiles.jpgName, testFiles.getJpgStream())
         .then(function(pdf: Buffer) {
           return pdf.toString("base64").length;
@@ -328,7 +337,7 @@ describe("Convert Client", () => {
     });
 
     it(".zip file: PDF document length is greater than zero and smaller than the original file length.", () => {
-      let value = convertClient
+      const value = convertClient
         .convertFileToPdf(testFiles.zipName, testFiles.getZipStream())
         .then(function(pdf: Buffer) {
           return pdf.toString("base64").length;

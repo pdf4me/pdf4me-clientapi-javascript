@@ -1,6 +1,5 @@
-import * as request from "request";
 import { Stream } from "stream";
-import { Pdf4meClient } from "./pdf4meClient";
+import { Pdf4meClient, FileInfo } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/pdf4meExceptions";
 import { CreateImages, CreateImagesRes } from "./../model/image";
 
@@ -45,7 +44,7 @@ export class ImageClient {
     width: number,
     pageNr: string,
     imageFormat: "jpg" | "png" | "bmp",
-    file: Stream
+    file: Stream | FileInfo
   ) {
     return new Promise<Buffer>((resolve, reject) => {
       this.pdf4meClient.customHttp
@@ -76,7 +75,7 @@ export class ImageClient {
     width: number,
     pageNrs: string,
     imageFormat: string,
-    file: Stream
+    file: Stream | FileInfo
   ) {
     return new Promise<Array<Buffer>>((resolve, reject) => {
       this.pdf4meClient.customHttp

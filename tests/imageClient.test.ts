@@ -30,7 +30,7 @@ describe("Image Client", () => {
     });
 
     it("Document (not undefined): Pdf4meClientException.", async () => {
-      let createImages = createCreateImages();
+      const createImages = createCreateImages();
       createImages.document = undefined as any;
       expect(imageClient.createImages(createImages)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -39,7 +39,7 @@ describe("Image Client", () => {
     });
 
     it("Document.docData (not undefined): Pdf4meClientException.", async () => {
-      let createImages = createCreateImages();
+      const createImages = createCreateImages();
       createImages.document.docData = undefined as any;
       expect(imageClient.createImages(createImages)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -48,7 +48,7 @@ describe("Image Client", () => {
     });
 
     it("ImageAction (not undefined): Pdf4meClientException.", async () => {
-      let createImages = createCreateImages();
+      const createImages = createCreateImages();
       createImages.imageAction = undefined as any;
       expect(imageClient.createImages(createImages)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -57,7 +57,7 @@ describe("Image Client", () => {
     });
 
     it("ImageAction.pageSelection (not undefined): Pdf4meClientException.", async () => {
-      let createImages = createCreateImages();
+      const createImages = createCreateImages();
       createImages.imageAction.pageSelection = undefined;
       expect(imageClient.createImages(createImages)).to.be.rejectedWith(
         Pdf4meClientException,

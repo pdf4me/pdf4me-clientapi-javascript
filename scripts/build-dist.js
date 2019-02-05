@@ -11,7 +11,7 @@ if (buildRes.code !== 0) {
 }
 
 // patch version
-$sh.exec("npm version patch -f");
+// $sh.exec("npm version patch -f");
 
 // copy files
 $sh.cp("./LICENSE", "./dist/");

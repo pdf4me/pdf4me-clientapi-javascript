@@ -30,7 +30,7 @@ describe("Extract Client", () => {
     });
 
     it("Document (not undefined): Pdf4meClientException.", async () => {
-      let extract = createExtract();
+      const extract = createExtract();
       extract.document = undefined as any;
       expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -39,7 +39,7 @@ describe("Extract Client", () => {
     });
 
     it("Document.docData (not undefined): Pdf4meClientException.", async () => {
-      let extract = createExtract();
+      const extract = createExtract();
       extract.document.docData = undefined as any;
       expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -48,7 +48,7 @@ describe("Extract Client", () => {
     });
 
     it("ExtractAction (not undefined): Pdf4meClientException.", async () => {
-      let extract = createExtract();
+      const extract = createExtract();
       extract.extractAction = undefined as any;
       expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -57,7 +57,7 @@ describe("Extract Client", () => {
     });
 
     it("ExtractAction.extractPages (not undefined): Pdf4meClientException.", async () => {
-      let extract = createExtract();
+      const extract = createExtract();
       extract.extractAction.extractPages = undefined as any;
       expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
@@ -66,7 +66,7 @@ describe("Extract Client", () => {
     });
 
     it("ExtractAction.extractPages (not empty): Pdf4meClientException.", async () => {
-      let extract = createExtract();
+      const extract = createExtract();
       extract.extractAction.extractPages = [];
       expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
