@@ -61,7 +61,7 @@ export default class CustomHttp {
 
   postFormData<T>(controller: string, content: any): Promise<T> {
     return new Promise((resolve, reject) => {
-      process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
+      // process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
 
       const options = {
         url: this.apiUrl + controller,
@@ -71,7 +71,7 @@ export default class CustomHttp {
           Authorization: "Basic " + this.apitoken,
           "User-Agent": this.userAgent
         },
-        proxy: "http://127.0.0.1:8888",
+        // proxy: "http://127.0.0.1:8888",
         formData: {} as any,
         encoding: null
       };
