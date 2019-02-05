@@ -49,7 +49,11 @@ export default class CustomHttp {
           return;
         }
 
-        resolve(body);
+        if (typeof body === "string") {
+          resolve(JSON.parse(body));
+        } else {
+          resolve(body);
+        }
       });
     });
   }
