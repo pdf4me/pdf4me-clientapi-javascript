@@ -1,4 +1,4 @@
-# pdf4me-client (preview) - the Node.js package for the Pdf4me Saas API
+# pdf4me api client (preview) - the Node.js package for the Pdf4me Saas API
 
 ![npm](https://img.shields.io/npm/v/pdf4me.svg) ![license](https://img.shields.io/github/license/mashape/apistatus.svg) ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg) ![Build](https://ynoox.visualstudio.com/_apis/public/build/definitions/2e29c2f0-3f4a-40e1-a4b1-1cc465571206/304/badge)
 
@@ -16,6 +16,10 @@ The Pdf4me Client API is a Node.js package which connects to its highly scalable
 | **Stamp**          | Stamp your document with text or images.                                                          |
 
 ## Getting Started
+
+### Installation
+
+`npm install pdf4me`
 
 To get started get a Token by dropping us an email (support-dev@pdf4me.com).
 
@@ -55,28 +59,3 @@ responsePromise.then(
 ## Documentation
 
 Please visit our [documentation]() for more information about all the functionalities provided and on how to use pdf4me.
-
-## Recommendation
-
-It's recommended to create an instance of `Pdf4meClient` per thread in a multithreaded environment to avoid any potential issues.
-
-## Contribution
-
-Contributions are very welcome. Please have a look at the instructions below for a smooth project setup.
-
-1. Fork pdf4me
-2. Clone your copy of pdf4me
-3. Download the needed node modules
-   > - In the Pdf4meJsClientApi/pdf4me folder run: _npm install_
-   > - In the Pdf4meJsClientApiTest folder run: _npm install_
-4. Link the pdf4me project to the test environment
-   > - In the Pdf4meJsClientApi/pdf4me folder run: _npm link_
-   > - In the Pdf4meJsClientApiTest folder run: _npm link pdf4me_
-5. Generate the .js files
-   > - In the Pdf4meJsClientApiTest folder run: _tsc_
-6. You are ready to go
-
-#### Running the Test Cases
-
-In order for the test cases to run, a config.json file containing the token must be stored in the Pdf4meJsClientApiTest folder. Please drop us an email (support-dev@pdf4me.com), so we can provide you the developer the token for testing the code of your pull request.
-To run the test cases, simply run: _npm test_ (from the Pdf4meJsClientApiTest folder).
