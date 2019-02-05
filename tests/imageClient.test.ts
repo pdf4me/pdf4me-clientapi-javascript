@@ -22,54 +22,44 @@ function createCreateImages(): CreateImages {
 
 describe("Image Client", () => {
   describe("CreateImages Object: Validity Check", () => {
-    it("CreateImages (not undefined): Pdf4meClientException.", () => {
-      expect(() => {
-        imageClient.createImages(undefined as any);
-      }).to.throw(
+    it("CreateImages (not undefined): Pdf4meClientException.", async () => {
+      expect(imageClient.createImages(undefined as any)).to.be.rejectedWith(
         Pdf4meClientException,
         "The createImages parameter cannot be undefined."
       );
     });
 
-    it("Document (not undefined): Pdf4meClientException.", () => {
+    it("Document (not undefined): Pdf4meClientException.", async () => {
       let createImages = createCreateImages();
       createImages.document = undefined as any;
-      expect(() => {
-        imageClient.createImages(createImages);
-      }).to.throw(
+      expect(imageClient.createImages(createImages)).to.be.rejectedWith(
         Pdf4meClientException,
         "The createImages document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Document.docData (not undefined): Pdf4meClientException.", () => {
+    it("Document.docData (not undefined): Pdf4meClientException.", async () => {
       let createImages = createCreateImages();
       createImages.document.docData = undefined as any;
-      expect(() => {
-        imageClient.createImages(createImages);
-      }).to.throw(
+      expect(imageClient.createImages(createImages)).to.be.rejectedWith(
         Pdf4meClientException,
         "The createImages document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("ImageAction (not undefined): Pdf4meClientException.", () => {
+    it("ImageAction (not undefined): Pdf4meClientException.", async () => {
       let createImages = createCreateImages();
       createImages.imageAction = undefined as any;
-      expect(() => {
-        imageClient.createImages(createImages);
-      }).to.throw(
+      expect(imageClient.createImages(createImages)).to.be.rejectedWith(
         Pdf4meClientException,
         "The imageAction cannot be undefined."
       );
     });
 
-    it("ImageAction.pageSelection (not undefined): Pdf4meClientException.", () => {
+    it("ImageAction.pageSelection (not undefined): Pdf4meClientException.", async () => {
       let createImages = createCreateImages();
       createImages.imageAction.pageSelection = undefined;
-      expect(() => {
-        imageClient.createImages(createImages);
-      }).to.throw(
+      expect(imageClient.createImages(createImages)).to.be.rejectedWith(
         Pdf4meClientException,
         "The pageSelection of the imageAction cannot be undefined."
       );
@@ -79,8 +69,7 @@ describe("Image Client", () => {
   /* ----------------createImages--------------------------*/
   describe("method: createImages ", () => {
     it("Response is not rejected.", async () => {
-      expect(imageClient.createImages(createCreateImages())).to.not.be
-        .eventually.rejected;
+      expect(imageClient.createImages(createCreateImages())).to.not.be.rejected;
     });
 
     it("Response contains image", async () => {
@@ -101,7 +90,7 @@ describe("Image Client", () => {
           "jpg",
           testFiles.getReadStream(testFiles.files.pdf1)
         )
-      ).to.not.be.eventually.rejected;
+      ).to.not.be.rejected;
     });
 
     it("Response contains image", async () => {
@@ -126,7 +115,7 @@ describe("Image Client", () => {
           "jpg",
           testFiles.getReadStream(testFiles.files.pdf1)
         )
-      ).to.not.be.eventually.rejected;
+      ).to.not.be.rejected;
     });
 
     it("Response contains images", async () => {

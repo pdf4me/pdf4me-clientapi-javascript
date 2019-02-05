@@ -1,3 +1,4 @@
+import * as request from "request";
 import { Stream } from "stream";
 import { Pdf4meClient } from "./pdf4meClient";
 import { Pdf4meClientException } from "../helper/pdf4meExceptions";
@@ -14,14 +15,23 @@ export class ImageClient {
    * The predefined image creation is carried out.
    * @param createImages image creation configuration
    */
-  public createImages(createImages: CreateImages): Promise<CreateImagesRes> {
-    // check createImages validity
-    this.checkCreateImagesObjectValidity(createImages);
-
-    return this.pdf4meClient.customHttp.httpCustomUniversalFunctionPost(
-      "/Image/CreateImages",
-      createImages
-    ) as any;
+  public createImages(createImages: CreateImages) {
+    return new Promise<CreateImagesRes>((resolve, reject) => {
+      // check createImages validity
+      const checkRes = this.checkCreateImagesObjectValidity(createImages);
+      if (checkRes) {
+        reject(checkRes);
+        return;
+      }
+      this.pdf4meClient.customHttp
+        .processRequest<CreateImagesRes>("/Image/CreateImages", createImages)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
   /**
@@ -34,13 +44,24 @@ export class ImageClient {
   public createThumbnail(
     width: number,
     pageNr: string,
-    imageFormat: string,
+    imageFormat: "jpg" | "png" | "bmp",
     file: Stream
-  ): Promise<Buffer> {
-    return this.pdf4meClient.customHttp.httpCustomWrapperPost(
-      "/Image/CreateThumbnail",
-      { width: width, pageNr: pageNr, imageFormat: imageFormat, file: file }
-    );
+  ) {
+    return new Promise<Buffer>((resolve, reject) => {
+      this.pdf4meClient.customHttp
+        .processRequest<Buffer>("/Image/CreateThumbnail", {
+          width: width,
+          pageNr: pageNr,
+          imageFormat: imageFormat,
+          file: file
+        })
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
   /**
@@ -50,56 +71,54 @@ export class ImageClient {
    * @param imageFormat picture format of thumbnail, e.g. 'jpg'
    * @param file file to capture thumbnails from
    */
+
   public createThumbnails(
     width: number,
     pageNrs: string,
     imageFormat: string,
     file: Stream
-  ): Promise<Array<Buffer>> {
-    return this.pdf4meClient.customHttp
-      .httpCustomWrapperPost("/Image/CreateThumbnails", {
-        width: width,
-        pageNrs: pageNrs,
-        imageFormat: imageFormat,
-        file: file
-      })
-      .then(function(response) {
-        return new Promise<Array<Buffer>>(function(resolve, reject) {
-          let jsonResponse = JSON.parse(response.toString("utf-8"));
+  ) {
+    return new Promise<Array<Buffer>>((resolve, reject) => {
+      this.pdf4meClient.customHttp
+        .processRequest<Buffer>("/Image/CreateThumbnails", {
+          width: width,
+          pageNrs: pageNrs,
+          imageFormat: imageFormat,
+          file: file
+        })
+        .then(response => {
+          const jsonResponse = JSON.parse(response.toString("utf-8"));
           var pdfs: Buffer[] = [];
-
           jsonResponse.forEach((element: string) => {
             pdfs.push(Buffer.from(element, "base64"));
           });
-
           resolve(pdfs);
+        })
+        .catch(error => {
+          reject(error);
         });
-      });
+    });
   }
 
-  /**
-     * Checks whether the createImages object contains the essential information to be
-                processed by the server.
-     * @param createImages object to be checked (validity)
-     */
   private checkCreateImagesObjectValidity(createImages: CreateImages) {
     if (createImages == undefined) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The createImages parameter cannot be undefined."
       );
     } else if (
       createImages.document == undefined ||
       createImages.document.docData == undefined
     ) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The createImages document cannot be undefined nor can the document.docData."
       );
     } else if (createImages.imageAction == undefined) {
-      throw new Pdf4meClientException("The imageAction cannot be undefined.");
+      return new Pdf4meClientException("The imageAction cannot be undefined.");
     } else if (createImages.imageAction.pageSelection == undefined) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The pageSelection of the imageAction cannot be undefined."
       );
     }
+    return null;
   }
 }

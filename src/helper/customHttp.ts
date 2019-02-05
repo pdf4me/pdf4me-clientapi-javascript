@@ -15,6 +15,48 @@ export default class CustomHttp {
     this.userAgent = "pdf4me-js/0.9.5";
   }
 
+  processRequest<T>(controller: string, content: object): Promise<T> {
+    return new Promise((resolve, reject) => {
+      let options = {
+        url: this.apiUrl + controller,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
+          Authorization: "Basic " + this.apitoken,
+          "User-Agent": this.userAgent
+        },
+        formData: content,
+        encoding: null
+      };
+
+      try {
+        request.post(options, (err, res, body) => {
+          // check for error
+          if (err != undefined) {
+            reject(err);
+            return;
+          }
+          // check status code
+          if (res.statusCode !== 200 && res.statusCode !== 204) {
+            const errorResponse = JSON.parse(res.body);
+            reject(
+              new Pdf4meBackendException(
+                res.statusCode,
+                errorResponse.errorMessage,
+                errorResponse.traceId
+              )
+            );
+            return;
+          }
+
+          resolve(body);
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
   /**
    * HTTP Post sending the provided parameters.
    * @param controller controller

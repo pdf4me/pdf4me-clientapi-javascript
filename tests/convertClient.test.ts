@@ -21,54 +21,44 @@ function createConvertToPdf(name: string): ConvertToPdf {
 
 describe("Convert Client", () => {
   describe("ConvertToPdf Object: Validity Check", () => {
-    it("ConvertToPdf (not undefined): Pdf4meClientException.", () => {
-      expect(() => {
-        convertClient.convertToPdf(undefined as any);
-      }).to.throw(
+    it("ConvertToPdf (not undefined): Pdf4meClientException.", async () => {
+      expect(convertClient.convertToPdf(undefined as any)).to.be.rejectedWith(
         Pdf4meClientException,
         "The convertToPdf parameter cannot be undefined."
       );
     });
 
-    it("Document (not undefined): Pdf4meClientException.", () => {
+    it("Document (not undefined): Pdf4meClientException.", async () => {
       const convertToPdfReq = createConvertToPdf(testFiles.files.pdf1);
       convertToPdfReq.document = undefined as any;
-      expect(() => {
-        convertClient.convertToPdf(convertToPdfReq);
-      }).to.throw(
+      expect(convertClient.convertToPdf(convertToPdfReq)).to.be.rejectedWith(
         Pdf4meClientException,
         "The convertToPdf document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Document.docData (not undefined): Pdf4meClientException.", () => {
+    it("Document.docData (not undefined): Pdf4meClientException.", async () => {
       const convertToPdfReq = createConvertToPdf(testFiles.files.text);
       convertToPdfReq.document.docData = undefined as any;
-      expect(() => {
-        convertClient.convertToPdf(convertToPdfReq);
-      }).to.throw(
+      expect(convertClient.convertToPdf(convertToPdfReq)).to.be.rejectedWith(
         Pdf4meClientException,
         "The convertToPdf document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Document.name (not undefined): Pdf4meClientException.", () => {
+    it("Document.name (not undefined): Pdf4meClientException.", async () => {
       const convertToPdfReq = createConvertToPdf(testFiles.files.text);
       convertToPdfReq.document.name = undefined as any;
-      expect(() => {
-        convertClient.convertToPdf(convertToPdfReq);
-      }).to.throw(
+      expect(convertClient.convertToPdf(convertToPdfReq)).to.be.rejectedWith(
         Pdf4meClientException,
         "The name field of convertToPdf's document cannot be undefined (name must incl. file extension)."
       );
     });
 
-    it("ConvertToPdfAction (not undefined): Pdf4meClientException.", () => {
+    it("ConvertToPdfAction (not undefined): Pdf4meClientException.", async () => {
       const convertToPdfReq = createConvertToPdf(testFiles.files.text);
       convertToPdfReq.convertToPdfAction = undefined as any;
-      expect(() => {
-        convertClient.convertToPdf(convertToPdfReq);
-      }).to.throw(
+      expect(convertClient.convertToPdf(convertToPdfReq)).to.be.rejectedWith(
         Pdf4meClientException,
         "The convertToPdfAction cannot be undefined."
       );
@@ -76,7 +66,7 @@ describe("Convert Client", () => {
   });
 
   /*-----------------convertToPdf-------------------------*/
-  describe("method: convertToPdf ", () => {
+  describe.only("method: convertToPdf ", () => {
     // .txt file
     it(".txt file: Response is not rejected.", async () => {
       const convertToPdfReq = createConvertToPdf(testFiles.files.text);
