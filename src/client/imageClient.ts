@@ -24,7 +24,7 @@ export class ImageClient {
         return;
       }
       this.pdf4meClient.customHttp
-        .processRequest<CreateImagesRes>("/Image/CreateImages", createImages)
+        .postJson<CreateImagesRes>("/Image/CreateImages", createImages)
         .then(res => {
           resolve(res);
         })
@@ -49,7 +49,7 @@ export class ImageClient {
   ) {
     return new Promise<Buffer>((resolve, reject) => {
       this.pdf4meClient.customHttp
-        .processRequest<Buffer>("/Image/CreateThumbnail", {
+        .postFormData<Buffer>("/Image/CreateThumbnail", {
           width: width,
           pageNr: pageNr,
           imageFormat: imageFormat,
@@ -80,11 +80,11 @@ export class ImageClient {
   ) {
     return new Promise<Array<Buffer>>((resolve, reject) => {
       this.pdf4meClient.customHttp
-        .processRequest<Buffer>("/Image/CreateThumbnails", {
-          width: width,
-          pageNrs: pageNrs,
-          imageFormat: imageFormat,
-          file: file
+        .postFormData<Buffer>("/Image/CreateThumbnails", {
+          width,
+          pageNrs,
+          imageFormat,
+          file
         })
         .then(response => {
           const jsonResponse = JSON.parse(response.toString("utf-8"));

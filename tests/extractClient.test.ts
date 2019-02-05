@@ -22,76 +22,53 @@ function createExtract(): Extract {
 
 describe("Extract Client", () => {
   describe("Extract Object: Validity Check", () => {
-    it("Extract (not undefined): Pdf4meClientException.", () => {
-      expect(() => {
-        extractClient.extract(undefined as any);
-      }).to.throw(
+    it("Extract (not undefined): Pdf4meClientException.", async () => {
+      expect(extractClient.extract(undefined as any)).to.be.rejectedWith(
         Pdf4meClientException,
         "The extract parameter cannot be undefined."
       );
     });
 
-    it("Document (not undefined): Pdf4meClientException.", () => {
+    it("Document (not undefined): Pdf4meClientException.", async () => {
       let extract = createExtract();
       extract.document = undefined as any;
-      expect(() => {
-        extractClient.extract(extract);
-      }).to.throw(
+      expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
         "The extract document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Document.docData (not undefined): Pdf4meClientException.", () => {
+    it("Document.docData (not undefined): Pdf4meClientException.", async () => {
       let extract = createExtract();
       extract.document.docData = undefined as any;
-      expect(() => {
-        extractClient.extract(extract);
-      }).to.throw(
+      expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
         "The extract document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("ExtractAction (not undefined): Pdf4meClientException.", () => {
+    it("ExtractAction (not undefined): Pdf4meClientException.", async () => {
       let extract = createExtract();
       extract.extractAction = undefined as any;
-      expect(() => {
-        extractClient.extract(extract);
-      }).to.throw(
+      expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
         "The ExtractAction cannot be undefined."
       );
     });
 
-    it("ExtractAction.extractPages (not undefined): Pdf4meClientException.", () => {
+    it("ExtractAction.extractPages (not undefined): Pdf4meClientException.", async () => {
       let extract = createExtract();
       extract.extractAction.extractPages = undefined as any;
-      expect(() => {
-        extractClient.extract(extract);
-      }).to.throw(
+      expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
         "The extractPages of ExtractAction cannot be undefined."
       );
     });
 
-    it.skip("ExtractAction.extractPages (not zero): Pdf4meClientException.", () => {
-      let extract = createExtract();
-      extract.extractAction.extractPages = [-5];
-      expect(() => {
-        extractClient.extract(extract);
-      }).to.throw(
-        Pdf4meClientException,
-        "The extractPages of ExtractAction cannot be zero."
-      );
-    });
-
-    it("ExtractAction.extractPages (not empty): Pdf4meClientException.", () => {
+    it("ExtractAction.extractPages (not empty): Pdf4meClientException.", async () => {
       let extract = createExtract();
       extract.extractAction.extractPages = [];
-      expect(() => {
-        extractClient.extract(extract);
-      }).to.throw(
+      expect(extractClient.extract(extract)).to.be.rejectedWith(
         Pdf4meClientException,
         "The extractPages of ExtractAction cannot be empty."
       );

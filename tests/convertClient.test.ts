@@ -66,7 +66,7 @@ describe("Convert Client", () => {
   });
 
   /*-----------------convertToPdf-------------------------*/
-  describe.only("method: convertToPdf ", () => {
+  describe("method: convertToPdf ", () => {
     // .txt file
     it(".txt file: Response is not rejected.", async () => {
       const convertToPdfReq = createConvertToPdf(testFiles.files.text);

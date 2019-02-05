@@ -14,14 +14,24 @@ export class StampClient {
    * The predefined stamp is carried out.
    * @param stamp stamp configuration
    */
-  public stamp(stamp: Stamp): Promise<StampRes> {
-    // check extract validity
-    this.checkStampObjectValidity(stamp);
+  public stamp(stamp: Stamp) {
+    return new Promise<StampRes>((resolve, reject) => {
+      // check extract validity
+      const checkRes = this.checkStampObjectValidity(stamp);
+      if (checkRes) {
+        reject(checkRes);
+        return;
+      }
+      this.pdf4meClient.customHttp
+        .postJson<StampRes>("/Stamp/Stamp", stamp)
 
-    return this.pdf4meClient.customHttp.httpCustomUniversalFunctionPost(
-      "/Stamp/Stamp",
-      stamp
-    ) as any;
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
   /**
@@ -39,40 +49,47 @@ export class StampClient {
     alignY: string,
     file: Stream
   ): Promise<Buffer> {
-    return this.pdf4meClient.customHttp.httpCustomWrapperPost(
-      "/Stamp/TextStamp",
-      { text: text, pages: pages, alignX: alignX, alignY: alignY, file: file }
-    );
+    return new Promise<Buffer>((resolve, reject) => {
+      this.pdf4meClient.customHttp
+        .postFormData<Buffer>("/Stamp/TextStamp", {
+          text,
+          pages,
+          alignX,
+          alignY,
+          file
+        })
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
-  /**
-     * Checks whether the stamp object contains the essential information to be
-        processed by the server.
-     * @param stamp object to be checked (validity)
-     */
   private checkStampObjectValidity(stamp: Stamp) {
     if (stamp == undefined) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The stamp parameter cannot be undefined."
       );
     } else if (
       stamp.document == undefined ||
       stamp.document.docData == undefined
     ) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The stamp document cannot be undefined nor can the document.docData."
       );
     } else if (stamp.stampAction == undefined) {
-      throw new Pdf4meClientException("The stampAction cannot be undefined.");
+      return new Pdf4meClientException("The stampAction cannot be undefined.");
     } else if (stamp.stampAction.alpha == undefined) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The alpha parameter of stampAction cannot be undefined."
       );
     } else if (
       stamp.stampAction.image == undefined &&
       stamp.stampAction.text == undefined
     ) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The image and text parameter of stampAction cannot both be undefined."
       );
     }

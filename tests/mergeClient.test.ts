@@ -21,87 +21,71 @@ function createMerge(): Merge {
 
 describe("Merge Client", () => {
   describe("Merge Object: Validity Check", () => {
-    it("Merge (not undefined): Pdf4meClientException.", () => {
-      expect(() => {
-        mergeClient.merge(undefined as any);
-      }).to.throw(
+    it("Merge (not undefined): Pdf4meClientException.", async () => {
+      expect(mergeClient.merge(undefined as any)).to.be.rejectedWith(
         Pdf4meClientException,
         "The merge parameter cannot be undefined."
       );
     });
 
-    it("Documents (not undefined): Pdf4meClientException.", () => {
+    it("Documents (not undefined): Pdf4meClientException.", async () => {
       let merge = createMerge();
       merge.documents = undefined as any;
-      expect(() => {
-        mergeClient.merge(merge);
-      }).to.throw(
+      expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
         "The merge documents cannot be undefined."
       );
     });
 
-    it("Documents (not two documents): Pdf4meClientException.", () => {
+    it("Documents (not two documents): Pdf4meClientException.", async () => {
       let merge = createMerge();
       merge.documents = [{ docData: undefined as any }];
-      expect(() => {
-        mergeClient.merge(merge);
-      }).to.throw(
+      expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
         "The merge documents must contain at least two documents."
       );
     });
 
-    it("Documents[0] (not undefined): Pdf4meClientException.", () => {
+    it("Documents[0] (not undefined): Pdf4meClientException.", async () => {
       let merge = createMerge();
       merge.documents[0] = undefined as any;
-      expect(() => {
-        mergeClient.merge(merge);
-      }).to.throw(
+      expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
         "The merge documents cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Documents[1] (not undefined): Pdf4meClientException.", () => {
+    it("Documents[1] (not undefined): Pdf4meClientException.", async () => {
       let merge = createMerge();
       merge.documents[1] = undefined as any;
-      expect(() => {
-        mergeClient.merge(merge);
-      }).to.throw(
+      expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
         "The merge documents cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Documents[0].docData (not undefined): Pdf4meClientException.", () => {
+    it("Documents[0].docData (not undefined): Pdf4meClientException.", async () => {
       let merge = createMerge();
       merge.documents[0].docData = undefined as any;
-      expect(() => {
-        mergeClient.merge(merge);
-      }).to.throw(
+      expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
         "The merge documents cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Documents[1].docData (not undefined): Pdf4meClientException.", () => {
+    it("Documents[1].docData (not undefined): Pdf4meClientException.", async () => {
       let merge = createMerge();
       merge.documents[1].docData = undefined as any;
-      expect(() => {
-        mergeClient.merge(merge);
-      }).to.throw(
+      expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
         "The merge documents cannot be undefined nor can the document.docData."
       );
     });
 
-    it("MergeAction (not undefined): Pdf4meClientException.", () => {
+    it("MergeAction (not undefined): Pdf4meClientException.", async () => {
       let merge = createMerge();
       merge.mergeAction = undefined as any;
-      expect(() => {
-        mergeClient.merge(merge);
-      }).to.throw(
+      expect(mergeClient.merge(merge)).to.be.rejectedWith(
         Pdf4meClientException,
         "The mergeAction cannot be undefined."
       );

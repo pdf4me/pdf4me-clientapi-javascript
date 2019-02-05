@@ -15,14 +15,23 @@ export class MergeClient {
    * The predefined merge is carried out.
    * @param merge merge configuration
    */
-  public merge(merge: Merge): Promise<MergeRes> {
-    // check extract validity
-    this.checkMergeObjectValidity(merge);
-
-    return this.pdf4meClient.customHttp.httpCustomUniversalFunctionPost(
-      "/Merge/Merge",
-      merge
-    ) as any;
+  public merge(merge: Merge) {
+    return new Promise<MergeRes>((resolve, reject) => {
+      // check extract validity
+      const checkRes = this.checkMergeObjectValidity(merge);
+      if (checkRes) {
+        reject(checkRes);
+        return;
+      }
+      this.pdf4meClient.customHttp
+        .postJson<MergeRes>("/Merge/Merge", merge)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
   /**
@@ -30,35 +39,39 @@ export class MergeClient {
    * @param file1 first PDF
    * @param file2 second PDF
    */
-  public merge2Pdfs(file1: Stream, file2: Stream): Promise<Buffer> {
-    return this.pdf4meClient.customHttp.httpCustomWrapperPost(
-      "/Merge/Merge2Pdfs  ",
-      { file1: file1, file2: file2 }
-    );
+  public merge2Pdfs(file1: Stream, file2: Stream) {
+    return new Promise<Buffer>((resolve, reject) => {
+      this.pdf4meClient.customHttp
+        .postFormData<Buffer>("/Merge/Merge2Pdfs  ", {
+          file1,
+          file2
+        })
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
-  /**
-     * Checks whether the merge object contains the essential information to be
-        processed by the server.
-     * @param merge object to be checked (validity)
-     */
   private checkMergeObjectValidity(merge: Merge) {
     if (merge == undefined) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The merge parameter cannot be undefined."
       );
     } else if (merge.documents == undefined) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The merge documents cannot be undefined."
       );
     } else if (merge.mergeAction == undefined) {
-      throw new Pdf4meClientException("The mergeAction cannot be undefined.");
+      return new Pdf4meClientException("The mergeAction cannot be undefined.");
     }
 
     // check whether there are at least two documents
     let numDocs = (merge.documents as Array<Document>).length;
     if (numDocs < 2) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The merge documents must contain at least two documents."
       );
     }
@@ -67,7 +80,7 @@ export class MergeClient {
     for (i = 0; i < numDocs; i++) {
       let currentDoc = (merge.documents as Array<Document>)[i];
       if (currentDoc == undefined || currentDoc.docData == undefined) {
-        throw new Pdf4meClientException(
+        return new Pdf4meClientException(
           "The merge documents cannot be undefined nor can the document.docData."
         );
       }

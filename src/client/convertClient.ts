@@ -28,7 +28,7 @@ export class ConvertClient {
       }
 
       this.pdf4meClient.customHttp
-        .processRequest<ConvertToPdfRes>("/Convert/ConvertToPdf", convertToPdf)
+        .postJson<ConvertToPdfRes>("/Convert/ConvertToPdf", convertToPdf)
         .then(res => {
           resolve(res);
         })
@@ -46,9 +46,9 @@ export class ConvertClient {
   public convertFileToPdf(fileName: string, file: Stream) {
     return new Promise<Buffer>((resolve, reject) => {
       this.pdf4meClient.customHttp
-        .processRequest<Buffer>("/Convert/ConvertFileToPdf", {
+        .postFormData<Buffer>("/Convert/ConvertFileToPdf", {
           fName: fileName,
-          file: file
+          file
         })
         .then(res => {
           resolve(res);

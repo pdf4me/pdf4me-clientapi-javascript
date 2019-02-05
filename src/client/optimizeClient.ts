@@ -14,14 +14,23 @@ export class OptimizeClient {
    * The predefined optimization is carried out.
    * @param optimize optimization configuration
    */
-  public optimize(optimize: Optimize): Promise<OptimizeRes> {
-    // check extract validity
-    this.checkOptimizeObjectValidity(optimize);
-
-    return this.pdf4meClient.customHttp.httpCustomUniversalFunctionPost(
-      "/Optimize/Optimize",
-      optimize
-    ) as any;
+  public optimize(optimize: Optimize) {
+    return new Promise<OptimizeRes>((resolve, reject) => {
+      // check extract validity
+      const checkRes = this.checkOptimizeObjectValidity(optimize);
+      if (checkRes) {
+        reject(checkRes);
+        return;
+      }
+      this.pdf4meClient.customHttp
+        .postJson<OptimizeRes>("/Optimize/Optimize", optimize)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
   /**
@@ -31,35 +40,39 @@ export class OptimizeClient {
      * @param file to be optimized
      */
   public optimizeByProfile(profile: string, file: Stream): Promise<Buffer> {
-    return this.pdf4meClient.customHttp.httpCustomWrapperPost(
-      "/Optimize/OptimizeByProfile",
-      { profile: profile, file: file }
-    );
+    return new Promise<Buffer>((resolve, reject) => {
+      this.pdf4meClient.customHttp
+        .postFormData<Buffer>("/Optimize/OptimizeByProfile", {
+          profile,
+          file
+        })
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
-  /**
-     * Checks whether the optimize object contains the essential information to be
-                processed by the server.
-     * @param optimize object to be checked (validity)
-     */
   private checkOptimizeObjectValidity(optimize: Optimize) {
     if (optimize == undefined) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The optimize parameter cannot be undefined."
       );
     } else if (
       optimize.document == undefined ||
       optimize.document.docData == undefined
     ) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The optimize document cannot be undefined nor can the document.docData."
       );
     } else if (optimize.optimizeAction == undefined) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The optimizeAction cannot be undefined."
       );
     } else if (optimize.optimizeAction.useProfile != true) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The useProfile parameter of optimizeAction has to be set to true."
       );
     }

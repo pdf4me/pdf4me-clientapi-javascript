@@ -24,66 +24,54 @@ const add = (a: number, b: number) => a + b;
 
 describe("Split Client", () => {
   describe("Split Object: Validity Check", () => {
-    it("Split (not undefined): Pdf4meClientException.", () => {
-      expect(() => {
-        splitClient.split(undefined as any);
-      }).to.throw(
+    it("Split (not undefined): Pdf4meClientException.", async () => {
+      expect(splitClient.split(undefined as any)).to.be.rejectedWith(
         Pdf4meClientException,
         "The split parameter cannot be undefined."
       );
     });
 
-    it("Document (not undefined): Pdf4meClientException.", () => {
+    it("Document (not undefined): Pdf4meClientException.", async () => {
       const split = createSplit();
       split.document = undefined as any;
-      expect(() => {
-        splitClient.split(split);
-      }).to.throw(
+      expect(splitClient.split(split)).to.be.rejectedWith(
         Pdf4meClientException,
         "The split document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Document.docData (not undefined): Pdf4meClientException.", () => {
+    it("Document.docData (not undefined): Pdf4meClientException.", async () => {
       let split = createSplit();
       split.document.docData = undefined as any;
-      expect(() => {
-        splitClient.split(split);
-      }).to.throw(
+      expect(splitClient.split(split)).to.be.rejectedWith(
         Pdf4meClientException,
         "The split document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("SplitAction (not undefined): Pdf4meClientException.", () => {
+    it("SplitAction (not undefined): Pdf4meClientException.", async () => {
       let split = createSplit();
       split.splitAction = undefined as any;
-      expect(() => {
-        splitClient.split(split);
-      }).to.throw(
+      expect(splitClient.split(split)).to.be.rejectedWith(
         Pdf4meClientException,
         "The splitAction cannot be undefined."
       );
     });
 
-    it("SplitAction.splitAfterPage (not undefined): Pdf4meClientException.", () => {
+    it("SplitAction.splitAfterPage (not undefined): Pdf4meClientException.", async () => {
       let split = createSplit();
       split.splitAction.splitAfterPage = undefined as any;
-      expect(() => {
-        splitClient.split(split);
-      }).to.throw(
+      expect(splitClient.split(split)).to.be.rejectedWith(
         Pdf4meClientException,
         "The splitAfterPage of splitAction cannot be undefined or zero." +
           "The first page of a PDF corresponds to page number one."
       );
     });
 
-    it("SplitAction.splitAfterPage (not zero): Pdf4meClientException.", () => {
+    it("SplitAction.splitAfterPage (not zero): Pdf4meClientException.", async () => {
       let split = createSplit();
       split.splitAction.splitAfterPage = 0;
-      expect(() => {
-        splitClient.split(split);
-      }).to.throw(
+      expect(splitClient.split(split)).to.be.rejectedWith(
         Pdf4meClientException,
         "The splitAfterPage of splitAction cannot be undefined or zero." +
           "The first page of a PDF corresponds to page number one."

@@ -19,54 +19,44 @@ function createOptimize(): Optimize {
 
 describe("Optimize Client", () => {
   describe("Optimize Object: Validity Check", () => {
-    it("Optimize (not undefined): Pdf4meClientException.", () => {
-      expect(() => {
-        optimizeClient.optimize(undefined as any);
-      }).to.throw(
+    it("Optimize (not undefined): Pdf4meClientException.", async () => {
+      expect(optimizeClient.optimize(undefined as any)).to.be.rejectedWith(
         Pdf4meClientException,
         "The optimize parameter cannot be undefined."
       );
     });
 
-    it("Document (not undefined): Pdf4meClientException.", () => {
+    it("Document (not undefined): Pdf4meClientException.", async () => {
       let optimize = createOptimize();
       optimize.document = undefined as any;
-      expect(() => {
-        optimizeClient.optimize(optimize);
-      }).to.throw(
+      expect(optimizeClient.optimize(optimize)).to.be.rejectedWith(
         Pdf4meClientException,
         "The optimize document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Document.docData (not undefined): Pdf4meClientException.", () => {
+    it("Document.docData (not undefined): Pdf4meClientException.", async () => {
       let optimize = createOptimize();
       optimize.document.docData = undefined as any;
-      expect(() => {
-        optimizeClient.optimize(optimize);
-      }).to.throw(
+      expect(optimizeClient.optimize(optimize)).to.be.rejectedWith(
         Pdf4meClientException,
         "The optimize document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("OptimizeAction (not undefined): Pdf4meClientException.", () => {
+    it("OptimizeAction (not undefined): Pdf4meClientException.", async () => {
       let optimize = createOptimize();
       optimize.optimizeAction = undefined as any;
-      expect(() => {
-        optimizeClient.optimize(optimize);
-      }).to.throw(
+      expect(optimizeClient.optimize(optimize)).to.be.rejectedWith(
         Pdf4meClientException,
         "The optimizeAction cannot be undefined."
       );
     });
 
-    it("OptimizeAction.useProfile (must be true): Pdf4meClientException.", () => {
+    it("OptimizeAction.useProfile (must be true): Pdf4meClientException.", async () => {
       let optimize = createOptimize();
       optimize.optimizeAction.useProfile = false;
-      expect(() => {
-        optimizeClient.optimize(optimize);
-      }).to.throw(
+      expect(optimizeClient.optimize(optimize)).to.be.rejectedWith(
         Pdf4meClientException,
         "The useProfile parameter of optimizeAction has to be set to true."
       );

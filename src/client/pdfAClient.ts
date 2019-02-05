@@ -14,14 +14,24 @@ export class PdfAClient {
    * The predefined PDF/A creation is carried out.
    * @param createPdfA PDF/A configuration
    */
-  public pdfA(createPdfA: CreatePdfA): Promise<CreatePdfARes> {
-    // check createPdfA validity
-    this.checkCreatePdfAObjectValidity(createPdfA);
+  public pdfA(createPdfA: CreatePdfA) {
+    return new Promise<CreatePdfARes>((resolve, reject) => {
+      // check createPdfA validity
+      const checkRes = this.checkCreatePdfAObjectValidity(createPdfA);
+      if (checkRes) {
+        reject(checkRes);
+        return;
+      }
 
-    return this.pdf4meClient.customHttp.httpCustomUniversalFunctionPost(
-      "/PdfA/PdfA",
-      createPdfA
-    ) as any;
+      this.pdf4meClient.customHttp
+        .postJson<CreatePdfARes>("/PdfA/PdfA", createPdfA)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
   /**
@@ -30,31 +40,35 @@ export class PdfAClient {
    * @param file to be converted to PDF/A
    */
   public createPdfA(pdfCompliance: string, file: Stream): Promise<Buffer> {
-    return this.pdf4meClient.customHttp.httpCustomWrapperPost(
-      "/PdfA/CreatePdfA",
-      { pdfCompliance: pdfCompliance, file: file }
-    );
+    return new Promise<Buffer>((resolve, reject) => {
+      this.pdf4meClient.customHttp
+        .postFormData<Buffer>("/PdfA/CreatePdfA", {
+          pdfCompliance: pdfCompliance,
+          file: file
+        })
+        .then(res => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
-  /**
-     * checks whether the createPdfA object contains the essential information to be
-        processed by the server.
-     * @param createPdfA object to be checked (validity)
-     */
   private checkCreatePdfAObjectValidity(createPdfA: CreatePdfA) {
     if (createPdfA == undefined) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The createPdfA parameter cannot be undefined."
       );
     } else if (
       createPdfA.document == undefined ||
       createPdfA.document.docData == undefined
     ) {
-      throw new Pdf4meClientException(
+      return new Pdf4meClientException(
         "The createPdfA document cannot be undefined nor can the document.docData."
       );
     } else if (createPdfA.pdfAAction == undefined) {
-      throw new Pdf4meClientException("The pdfAAction cannot be undefined.");
+      return new Pdf4meClientException("The pdfAAction cannot be undefined.");
     }
   }
 }

@@ -25,66 +25,54 @@ function createStamp(): Stamp {
 
 describe("Stamp Client", () => {
   describe("Stamp Object: Validity Check", () => {
-    it("Stamp (not undefined): Pdf4meClientException.", () => {
-      expect(() => {
-        stampClient.stamp(undefined as any);
-      }).to.throw(
+    it("Stamp (not undefined): Pdf4meClientException.", async () => {
+      expect(stampClient.stamp(undefined as any)).to.be.rejectedWith(
         Pdf4meClientException,
         "The stamp parameter cannot be undefined."
       );
     });
 
-    it("Document (not undefined): Pdf4meClientException.", () => {
+    it("Document (not undefined): Pdf4meClientException.", async () => {
       let stamp = createStamp();
       stamp.document = undefined as any;
-      expect(() => {
-        stampClient.stamp(stamp);
-      }).to.throw(
+      expect(stampClient.stamp(stamp)).to.be.rejectedWith(
         Pdf4meClientException,
         "The stamp document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("Document.docData (not undefined): Pdf4meClientException.", () => {
+    it("Document.docData (not undefined): Pdf4meClientException.", async () => {
       let stamp = createStamp();
       stamp.document.docData = undefined as any;
-      expect(() => {
-        stampClient.stamp(stamp);
-      }).to.throw(
+      expect(stampClient.stamp(stamp)).to.be.rejectedWith(
         Pdf4meClientException,
         "The stamp document cannot be undefined nor can the document.docData."
       );
     });
 
-    it("StampAction (not undefined): Pdf4meClientException.", () => {
+    it("StampAction (not undefined): Pdf4meClientException.", async () => {
       let stamp = createStamp();
       stamp.stampAction = undefined as any;
-      expect(() => {
-        stampClient.stamp(stamp);
-      }).to.throw(
+      expect(stampClient.stamp(stamp)).to.be.rejectedWith(
         Pdf4meClientException,
         "The stampAction cannot be undefined."
       );
     });
 
-    it("StampAction.alpha (not undefined): Pdf4meClientException.", () => {
+    it("StampAction.alpha (not undefined): Pdf4meClientException.", async () => {
       let stamp = createStamp();
       stamp.stampAction.alpha = undefined as any;
-      expect(() => {
-        stampClient.stamp(stamp);
-      }).to.throw(
+      expect(stampClient.stamp(stamp)).to.be.rejectedWith(
         Pdf4meClientException,
         "The alpha parameter of stampAction cannot be undefined."
       );
     });
 
-    it("StampAction.image & StampAction.text (not both undefined): Pdf4meClientException.", () => {
+    it("StampAction.image & StampAction.text (not both undefined): Pdf4meClientException.", async () => {
       let stamp = createStamp();
       stamp.stampAction.image = undefined as any;
       stamp.stampAction.text = undefined as any;
-      expect(() => {
-        stampClient.stamp(stamp);
-      }).to.throw(
+      expect(stampClient.stamp(stamp)).to.be.rejectedWith(
         Pdf4meClientException,
         "The image and text parameter of stampAction cannot both be undefined."
       );
