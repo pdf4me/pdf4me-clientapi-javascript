@@ -45,16 +45,16 @@ export class SplitClient {
           pageNr,
           file
         })
-        .then(function(response) {
-          return new Promise<Array<Buffer>>(function(resolve, reject) {
-            let jsonResponse = JSON.parse(response.toString("utf-8"));
-            let pdf1 = Buffer.from(jsonResponse[0], "base64");
-            let pdf2 = Buffer.from(jsonResponse[1], "base64");
-            let pdfs = [pdf1, pdf2];
-            resolve(pdfs);
-          }).catch(error => {
-            reject(error);
-          });
+        .then(response => {
+          console.log(response.length);
+          const jsonResponse = JSON.parse(response.toString("utf-8"));
+          const pdf1 = Buffer.from(jsonResponse[0], "base64");
+          const pdf2 = Buffer.from(jsonResponse[1], "base64");
+          const pdfs = [pdf1, pdf2];
+          resolve(pdfs);
+        })
+        .catch(error => {
+          reject(error);
         });
     });
   }
@@ -72,16 +72,15 @@ export class SplitClient {
           file: file
         })
         .then(function(response) {
-          return new Promise<Array<Buffer>>(function(resolve, reject) {
-            let jsonResponse = JSON.parse(response.toString("utf-8"));
-            let pdfs: Buffer[] = [];
-            jsonResponse.forEach((element: string) => {
-              pdfs.push(Buffer.from(element, "base64"));
-            });
-            resolve(pdfs);
-          }).catch(error => {
-            reject(error);
+          let jsonResponse = JSON.parse(response.toString("utf-8"));
+          let pdfs: Buffer[] = [];
+          jsonResponse.forEach((element: string) => {
+            pdfs.push(Buffer.from(element, "base64"));
           });
+          resolve(pdfs);
+        })
+        .catch(error => {
+          reject(error);
         });
     });
   }
