@@ -12,8 +12,8 @@ export default class CustomHttp {
   constructor(apitoken: string) {
     this.responseChecker = new ResponseChecker();
     this.apitoken = apitoken;
-    this.apiUrl = "https://api-dev.pdf4me.com";
-    this.userAgent = "pdf4me-js/0.9.5";
+    this.apiUrl = "https://api.pdf4me.com";
+    this.userAgent = "pdf4me-js/0.9.10";
   }
 
   postJson<T>(controller: string, object: object): Promise<T> {

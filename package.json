@@ -1,7 +1,20 @@
 {
   "name": "pdf4me",
-  "version": "0.9.9",
-  "description": "",
+  "version": "0.9.10",
+  "description": "Provides expert functionality to convert, optimize, compress, produce, merge, split, ocr, enrich, archive, print documents and PDFs.",
+  "keywords": [
+    "pdf",
+    "convert",
+    "extract",
+    "thumbnails",
+    "merge",
+    "optimize",
+    "compress",
+    "split",
+    "stamp",
+    "ocr",
+    "archive"
+  ],
   "author": "Pdf4me",
   "license": "MIT",
   "homepage": "https://developer.pdf4me.com",
