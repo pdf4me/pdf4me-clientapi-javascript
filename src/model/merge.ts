@@ -2,7 +2,7 @@ import { Document, DocMetadata } from "./model";
 export type Merge = {
   documents: Array<Document>;
   mergeAction?: MergeAction;
-  jobIdExtern?: string;
+  jobIdExt?: string;
   integrations?: Array<string>;
 };
 

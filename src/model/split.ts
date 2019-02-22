@@ -3,7 +3,7 @@ import { Document, DocMetadata } from "./model";
 export type Split = {
   document: Document;
   splitAction: SplitAction;
-  jobIdExtern?: string;
+  jobIdExt?: string;
   integrations?: Array<string>;
 };
 

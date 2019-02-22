@@ -3,7 +3,7 @@ import { Document, DocMetadata } from "./model";
 export type ConvertToPdf = {
   document: Document;
   convertToPdfAction: ConvertToPdfAction;
-  jobIdExtern?: string;
+  jobIdExt?: string;
   integrations?: Array<string>;
 };
 

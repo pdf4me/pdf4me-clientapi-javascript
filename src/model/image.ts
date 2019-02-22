@@ -3,7 +3,7 @@ import { Document, DocMetadata } from "./model";
 export type CreateImages = {
   document: Document;
   imageAction: ImageAction;
-  jobIdExtern?: string;
+  jobIdExt?: string;
   integrations?: Array<string>;
 };
 

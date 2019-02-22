@@ -3,7 +3,7 @@ import { Document, DocMetadata } from "./model";
 export type Extract = {
   document: Document;
   extractAction: ExtractAction;
-  jobIdExtern?: string;
+  jobIdExt?: string;
   integrations?: Array<string>;
 };
 

@@ -3,7 +3,7 @@ import { Document, DocMetadata } from "./model";
 export type Stamp = {
   document: Document;
   stampAction: StampAction;
-  jobIdExtern?: string;
+  jobIdExt?: string;
   integrations?: Array<string>;
 };
 

@@ -3,7 +3,7 @@ import { DocMetadata, Document, KeyValuePair } from "./model";
 export type Optimize = {
   document: Document;
   optimizeAction: OptimizeAction;
-  jobIdExtern?: string;
+  jobIdExt?: string;
   integrations?: Array<string>;
 };
 

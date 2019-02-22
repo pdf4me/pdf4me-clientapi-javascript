@@ -3,7 +3,7 @@ import { Document, DocMetadata } from "./model";
 export type CreatePdfA = {
   document: Document;
   pdfAAction?: PdfAAction;
-  jobIdExtern?: string;
+  jobIdExt?: string;
   integrations?: Array<string>;
 };
 
