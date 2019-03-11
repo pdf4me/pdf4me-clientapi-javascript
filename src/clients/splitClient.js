@@ -22,8 +22,12 @@ module.exports = {
               file,
               integrationConfig: JSON.stringify(integrationConfig),
             })
-            .then(res => {
-              resolve(res)
+            .then(jsonResponse => {
+              var documents = []
+              jsonResponse.forEach(bas64Document => {
+                documents.push(Buffer.from(bas64Document, 'base64'))
+              })
+              resolve(documents)
             })
             .catch(error => {
               reject(error)
