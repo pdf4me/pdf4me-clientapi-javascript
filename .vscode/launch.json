@@ -7,23 +7,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Mocha Tests",
+      "name": "Mocha All",
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "env": {
-        "PDF4ME_API_TOKEN": "YjQ3MDZkYzUtODMzNy00NjkyLWI3MzYtOGViMTMxNzI2ZjI2OnVHb1MwVEQ4dEFheFVCbUtMQ0J2amR0WkUzc1JGTUtp"
-      },
       "args": [
-        "--require",
-        "ts-node/register",
-        "-u",
-        "tdd",
         "--timeout",
         "999999",
         "--colors",
-        "--recursive",
-        "${workspaceFolder}/tests/**/*.test.ts"
-      ],
-      "internalConsoleOptions": "openOnSessionStart"
+        "${workspaceFolder}/tests"
+      ]
     }
   ]
 }

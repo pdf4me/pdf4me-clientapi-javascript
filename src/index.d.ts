@@ -1,0 +1,31 @@
+export interface Pdf4meClient {
+  convertToPdf(): void
+  convertFileToPdf(): void
+  extract(): void
+  extractResources(): void
+  extractPages(): void
+  createImages(): void
+  createThumbnail(): void
+  createThumbnails(): void
+  merge(): void
+  merge2pdfs(): void
+  optimize(): void
+  optimizeByProfile(): void
+  pdfA(): void
+  createPdfA(): void
+  protect(): void
+  protectDocument(): void
+  unlockDocument(): void
+  repair(): void
+  repairDocument(): void
+  rotate(): void
+  rotateDocument(): void
+  rotatePage(): void
+  split(): void
+  splitByPageNr(): void
+  splitRecurring(): void
+  stamp(): void
+  textStamp(): void
+  validate(): void
+  validateDocument(): void
+}

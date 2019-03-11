@@ -1,8 +1,7 @@
 node_modules
-test2
+testoutput
 dist
-out
-test-results.xml
-.xml
-.vscode
-setenv.bat
+examples/**/out
+api-key.js
+test-dev.js
+test-prod.js

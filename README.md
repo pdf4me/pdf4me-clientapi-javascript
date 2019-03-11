@@ -28,10 +28,10 @@ The Token is required to Authenticate with OAuth2. The Pdf4me Client Api provide
 ```javascript
 //The authentication setup happens through the Pdf4meClient.
 
-const fs = require("fs");
-const pdf4me = require("pdf4me");
+const fs = require('fs')
+const pdf4me = require('pdf4me')
 
-const pdf4meClient = new pdf4me.Pdf4meClient(token);
+const pdf4meClient = new pdf4me.Pdf4meClient(token)
 
 /*
 The pdf4meClient object delivers the necessary authentication when instantiating
@@ -39,23 +39,30 @@ the different pdf4meClients such as for instance the mergeClient
 */
 
 // setup the mergeClient
-const mergeClient = new pdf4me.MergeClient(pdf4meClient);
+const mergeClient = new pdf4me.MergeClient(pdf4meClient)
 
 // merge
 const responsePromise = mergeClient.merge2Pdfs(
-  fs.createReadStream("./myFirstPdf.pdf"),
-  fs.createReadStream("./mySecondPdf.pdf")
-);
+  fs.createReadStream('./myFirstPdf.pdf'),
+  fs.createReadStream('./mySecondPdf.pdf')
+)
 responsePromise.then(
   function(pdf) {
-    fs.writeFileSync("./mergedPdf.pdf", pdf);
+    fs.writeFileSync('./mergedPdf.pdf', pdf)
   },
   function(err) {
-    console.log(err);
+    console.log(err)
   }
-);
+)
 ```
 
 ## Documentation
 
 Please visit our [documentation]() for more information about all the functionalities provided and on how to use pdf4me.
+
+## Examples
+
+### Basic Usage
+
+- convert
+  - convertToPdf
