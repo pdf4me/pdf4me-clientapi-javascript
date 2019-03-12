@@ -43,7 +43,7 @@ module.exports = {
   saveJson: (filename, object) => {
     fs.writeFileSync(
       path.join(testoutputDir, filename),
-      JSON.stringify(object),
+      JSON.stringify(object, null, 2),
       'utf8'
     )
   },

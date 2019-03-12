@@ -45,6 +45,21 @@ module.exports = {
             })
         })
       },
+      metadata: (file, integrationConfig = {}) => {
+        return new Promise((resolve, reject) => {
+          api
+            .postFormData('/PdfA/Metadata', {
+              file,
+              integrationConfig: JSON.stringify(integrationConfig),
+            })
+            .then(res => {
+              resolve(res)
+            })
+            .catch(error => {
+              reject(error)
+            })
+        })
+      },
     }
   },
 }

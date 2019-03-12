@@ -22,6 +22,7 @@ describe('pdf4me Client', () => {
     expect(p4m.extract).to.be.a('function')
     expect(p4m.extractResources).to.be.a('function')
     expect(p4m.extractPages).to.be.a('function')
+    expect(p4m.metadata).to.be.a('function')
 
     // imageClient
     expect(p4m.createImages).to.be.a('function')

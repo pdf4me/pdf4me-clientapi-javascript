@@ -95,4 +95,14 @@ describe('extract operations', () => {
       )
     })
   })
+  describe('metadata', () => {
+    it('metadata with stream input', async () => {
+      const metadataRes = await p4mClient.metadata(
+        files.pdf1.getReadStream()
+      )
+      expect(metadataRes).to.not.be.null
+
+      files.saveJson('metadata_with_stream_input.json', metadataRes)
+    })
+  })
 })
