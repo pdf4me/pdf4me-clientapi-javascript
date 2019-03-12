@@ -6,63 +6,45 @@ The Pdf4me Client API is a Node.js package which connects to its highly scalable
 
 | Feature            | Description                                                                                       |
 | ------------------ | ------------------------------------------------------------------------------------------------- |
-| **Optimize**       | PDF's can often be optimized by removing structural redundancy. This leads to much smaller PDF's. |
-| **Merge**          | Multiple PDF's can be merged into single optimized PDFs.                                          |
 | **Split**          | A PDF can be splitted into multiple PDF's.                                                        |
-| **Extract**        | From a PDF extract multiple pages into a new document.                                            |
+| **Merge**          | Multiple PDF's can be merged into single optimized PDFs.                                          |
 | **Images**         | Extract images from your document, can be any type of document.                                   |
-| **Create Pdf/A**   | Create a archive conform PDF/A including xmp Metadata.                                            |
+| **Extract**        | From a PDF extract multiple pages into a new document.                                            |
+| **Rotate**         | Rotate allows selected pages or all pages in a document to be rotated in given direction.         |
+| **Optimize**       | PDF's can often be optimized by removing structural redundancy. This leads to much smaller PDF's. |
+| **Protect**        | Set or remove password and permissions from a document.                                           |
 | **Convert to PDF** | Convert your documents from any format to a proper PDF document.                                  |
+| **Validate**       | validation on pdf document compliance.                                                            |
+| **Create Pdf/A**   | Create a archive conform PDF/A including xmp Metadata.                                            |
+| **Repair**         | analyse and repair PDF files against corruption or recover content from corrupt files.            |
 | **Stamp**          | Stamp your document with text or images.                                                          |
 
 ## Getting Started
+
+### Get API key
+
+To use pdf4me, you need a Api Key. You can get a free Api Key from our [developer portal](https://portal.pdf4me.com).
 
 ### Installation
 
 `npm install pdf4me`
 
-To get started get a Token by dropping us an email (support-dev@pdf4me.com).
-
-The Token is required to Authenticate with OAuth2. The Pdf4me Client Api provides you already with the necessary implementation. You need only to get an instance for the Pdf4meClient as shown in the sample below.
+### Basic Usage
 
 ```javascript
-//The authentication setup happens through the Pdf4meClient.
+// create pdf4meClient
+const pdf4meClient = pdf4me.createClient('YOUR API KEY')
 
-const fs = require('fs')
-const pdf4me = require('pdf4me')
-
-const pdf4meClient = new pdf4me.Pdf4meClient(token)
-
-/*
-The pdf4meClient object delivers the necessary authentication when instantiating
-the different pdf4meClients such as for instance the mergeClient
-*/
-
-// setup the mergeClient
-const mergeClient = new pdf4me.MergeClient(pdf4meClient)
-
-// merge
-const responsePromise = mergeClient.merge2Pdfs(
-  fs.createReadStream('./myFirstPdf.pdf'),
-  fs.createReadStream('./mySecondPdf.pdf')
+const pdfDocument = await pdf4meClient.convertFileToPdf(
+  fs.createReadStream('myWordDoc.docx')
 )
-responsePromise.then(
-  function(pdf) {
-    fs.writeFileSync('./mergedPdf.pdf', pdf)
-  },
-  function(err) {
-    console.log(err)
-  }
+
+fs.writeFileSync(
+  path.join(__dirname, 'myPdfDocument.pdf'),
+  pdfDocument
 )
 ```
 
 ## Documentation
 
 Please visit our [documentation]() for more information about all the functionalities provided and on how to use pdf4me.
-
-## Examples
-
-### Basic Usage
-
-- convert
-  - convertToPdf
