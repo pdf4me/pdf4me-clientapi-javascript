@@ -1,19 +1,22 @@
 const fs = require('fs')
-const pdf4me = require('pdf4me')
+const path = require('path')
+const pdf4me = require('../../../src/index')
 
 // setup the pdf4meClient
-const pdf4meClient = pdf4me.createClient('YOUR_API_KEY')
+const pdf4meClient = pdf4me.createClient(process.env.PDF4ME_API_KEY)
 
-// create the merge request
+// create merge object
 const mergeReq = {
+  // documents
   documents: [
     {
-      docData: fs.readFileSync('./pdf1.pdf').toString('base64'),
+      docData: fs.readFileSync(path.join(__dirname, 'myFirstPdf.pdf')).toString('base64'),
     },
     {
-      docData: fs.readFileSync('./pdf1.pdf').toString('base64'),
+      docData: fs.readFileSync(path.join(__dirname, 'mySecondPdf.pdf')).toString('base64'),
     },
   ],
+  // action
   mergeAction: {},
 }
 
@@ -21,9 +24,11 @@ const mergeReq = {
 pdf4meClient
   .merge(mergeReq)
   .then(function(mergeRes) {
-    const pdf = new Buffer(mergeRes.document.docData, 'base64')
-    fs.writeFileSync('./mergedPdf.pdf', pdf)
+    // extract the merged PDF and writing it to disk
+    const pdf = Buffer.from(mergeRes.document.docData, 'base64')
+    fs.writeFileSync(path.join(__dirname, 'merge_result.pdf'), pdf)
   })
   .catch(err => {
     console.log(err)
+    process.exit(1)
   })

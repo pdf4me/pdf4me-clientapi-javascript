@@ -1,7 +1,7 @@
 node_modules
 testoutput
 dist
-examples/**/out
+examples/**/*_result.*
 api-key.js
 test-dev.js
 test-prod.js

@@ -3,27 +3,29 @@ const path = require('path')
 const pdf4me = require('../../../src/index')
 
 // create pdf4meClient
-const pdf4me = pdf4me.createClient(process.env.PDF4ME_API_KEY)
+const pdf4meClient = pdf4me.createClient(process.env.PDF4ME_API_KEY)
 
-// create the extract request
+// create extract object
 const extractReq = {
+  // document
   document: {
-    docData: fs.readFileSync(path.join(__dirname, 'pdf1.pdf')).toString('base64'),
-    name: 'wordDoc.docx',
+    docData: fs.readFileSync(path.join(__dirname, 'myPdf.pdf')).toString('base64'),
   },
+  // action
   extractAction: {
-    pdfConformance: 'pdfA1',
+    extractPages: [1, 4],
   },
 }
 
-// extractToPdf
-pdf4me
+// extraction
+pdf4meClient
   .extract(extractReq)
   .then(function(extractRes) {
-    // returns a extractRes
+    // extracting the generated PDF and writing it to disk
     const pdfDocument = Buffer.from(extractRes.document.docData, 'base64')
-    fs.writeFileSync(path.join(__dirname, 'extractToPdf_result.pdf'), pdfDocument)
+    fs.writeFileSync(path.join(__dirname, 'extract_result.pdf'), pdfDocument)
   })
-  .catch(err => {
-    console.log(err)
+  .catch(error => {
+    console.log(error)
+    process.exit(1)
   })

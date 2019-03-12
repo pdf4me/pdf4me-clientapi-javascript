@@ -3,13 +3,13 @@ const path = require('path')
 const pdf4me = require('../../../src/index')
 
 // create pdf4meClient
-const pdf4me = pdf4me.createClient(process.env.PDF4ME_API_KEY)
+const pdf4meClient = pdf4me.createClient(process.env.PDF4ME_API_KEY)
 
-// convertToPdf
-pdf4me
+// conversion
+pdf4meClient
   .convertFileToPdf(fs.createReadStream(path.join(__dirname, 'wordDoc.docx')))
   .then(function(pdfDocument) {
-    // returns a buffer with the converted document
+    // and writing the generated PDF to disk
     fs.writeFileSync(path.join(__dirname, 'convertFileToPdf_result.pdf'), pdfDocument)
   })
   .catch(err => {

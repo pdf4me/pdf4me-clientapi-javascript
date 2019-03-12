@@ -67,10 +67,10 @@ describe('protect operations', () => {
   })
 
   describe('protectDocument', () => {
-    it.skip('protectDocument with password 123456', async () => {
+    it('protectDocument with password 123456', async () => {
       const protectRes = await p4mClient.protectDocument(
         '123456',
-        '',
+        'all',
         files.pdf1.getReadStream()
       )
       expect(protectRes).to.not.be.null
@@ -83,7 +83,7 @@ describe('protect operations', () => {
   })
 
   describe('unlockDocument', () => {
-    it.skip('unlockDocument', async () => {
+    it('unlockDocument', async () => {
       const unlockRes = await p4mClient.unlockDocument(
         '123456',
         files.pdf_protected.getReadStream()

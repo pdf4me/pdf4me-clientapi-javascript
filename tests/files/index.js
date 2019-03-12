@@ -24,7 +24,7 @@ const testoutputDir = 'testoutput/files'
 module.exports = {
   pdf1: file('pdf1.pdf'),
   pdf2: file('pdf2.pdf'),
-  pdf_protected: file('pdf_passwort_123456.password'),
+  pdf_protected: file('protectedPdf.pdf'),
   text: file('txt.txt'),
   email_eml: file('email.eml'),
   email_msg: file('email.msg'),

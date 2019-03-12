@@ -5,12 +5,12 @@ const pdf4me = require('../../../src/index')
 // create pdf4meClient
 const p4mClient = pdf4me.createClient(process.env.PDF4ME_API_KEY)
 
-// extraction
+// thumbnail creation
 p4mClient
-  .extractPages('1,4', fs.createReadStream(path.join(__dirname, 'myPdf.pdf')))
-  .then(pdf => {
-    // and writing the resulting PDFs to disk
-    fs.writeFileSync(path.join(__dirname, 'extractPages_result.pdf'), pdf)
+  .createThumbnail(2000, '1', 'png', fs.createReadStream(path.join(__dirname, 'myPdf.pdf')))
+  .then(thumbnail => {
+    // and writing the generated picture to disk
+    fs.writeFileSync(path.join(__dirname, 'createThumbnail_result.png'), thumbnail)
   })
   .catch(error => {
     console.error(error)

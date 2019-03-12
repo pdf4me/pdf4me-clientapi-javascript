@@ -75,23 +75,21 @@ describe('split operations', () => {
     })
   })
   describe('splitRecurring', () => {
-    it('splitRecurring after 2 pages with stream input', async () => {
+    it('splitRecurring after 5 pages with stream input', async () => {
       const splitRes = await p4mClient.splitRecurring(
-        2,
+        5,
         files.pdf1.getReadStream()
       )
       expect(splitRes).to.not.be.null
       expect(splitRes.length).to.be.greaterThan(1)
 
-      files.saveBuffer(
-        'splitRecurring_after_2_pages_with_stream_input_file_1.pdf',
-        splitRes[0]
-      )
-
-      files.saveBuffer(
-        'splitRecurring_after_2_pages_with_stream_input_file_2.pdf',
-        splitRes[1]
-      )
+      splitRes.forEach((file, index) => {
+        files.saveBuffer(
+          `splitRecurring_after_5_pages_with_stream_input_file_${index +
+            1}.pdf`,
+          file
+        )
+      })
     })
   })
 })
