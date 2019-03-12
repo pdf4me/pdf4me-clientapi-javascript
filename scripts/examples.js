@@ -103,6 +103,11 @@ const examples = [
     ],
   },
   {
+    name: 'metadata',
+    path: './examples/basic-usage/extract/metadata.js',
+    output: ['./examples/basic-usage/extract/metadata_result.json'],
+  },
+  {
     name: 'rotate',
     path: './examples/basic-usage/rotate/rotate.js',
     output: ['./examples/basic-usage/rotate/rotate_result.pdf'],
