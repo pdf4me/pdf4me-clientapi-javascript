@@ -2,22 +2,22 @@
 
 ![npm](https://img.shields.io/npm/v/pdf4me.svg) ![license](https://img.shields.io/github/license/mashape/apistatus.svg) ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg) ![Build](https://ynoox.visualstudio.com/_apis/public/build/definitions/2e29c2f0-3f4a-40e1-a4b1-1cc465571206/304/badge)
 
-The Pdf4me Client API is a Node.js package which connects to its highly scalable SaaS cloud service with many functionalities to solve your document and PDF requirements. The SaaS API provides expert functionality to convert, optimize, compress, produce, merge, split, ocr, enrich, archive, print documents and PDF's.
+The [Pdf4me Client API](https://developer.pdf4me.com/docs/api/getting-started/) is a Node.js package which connects to its highly scalable SaaS cloud service with many functionalities to solve your document and PDF requirements. The SaaS API provides expert functionality to convert, optimize, compress, produce, merge, split, ocr, enrich, archive, print documents and PDF's.
 
-| Feature            | Description                                                                                       |
-| ------------------ | ------------------------------------------------------------------------------------------------- |
-| **Split**          | A PDF can be splitted into multiple PDF's.                                                        |
-| **Merge**          | Multiple PDF's can be merged into single optimized PDFs.                                          |
-| **Images**         | Extract images from your document, can be any type of document.                                   |
-| **Extract**        | From a PDF extract multiple pages into a new document.                                            |
-| **Rotate**         | Rotate allows selected pages or all pages in a document to be rotated in given direction.         |
-| **Optimize**       | PDF's can often be optimized by removing structural redundancy. This leads to much smaller PDF's. |
-| **Protect**        | Set or remove password and permissions from a document.                                           |
-| **Convert to PDF** | Convert your documents from any format to a proper PDF document.                                  |
-| **Validate**       | validation on pdf document compliance.                                                            |
-| **Create Pdf/A**   | Create a archive conform PDF/A including xmp Metadata.                                            |
-| **Repair**         | analyse and repair PDF files against corruption or recover content from corrupt files.            |
-| **Stamp**          | Stamp your document with text or images.                                                          |
+[**Optimize**](https://developer.pdf4me.com/docs/api/basic-functionality/optimize/) | PDF's can often be optimized by removing structural redundancy. This leads to much smaller PDF's.
+[**Merge**](https://developer.pdf4me.com/docs/api/basic-functionality/merge-pdfs/) | Multiple PDF's can be merged into single optimized PDFs.
+[**Split**](https://developer.pdf4me.com/docs/api/basic-functionality/split-pdf/) | A PDF can be splitted into multiple PDF's.
+[**Extract**](https://developer.pdf4me.com/docs/api/basic-functionality/extract-pdf/) | From a PDF extract multiple pages into a new document.
+[**OCR**](https://developer.pdf4me.com/docs/api/basic-functionality/ocr/) | Create a searchable OCR Document out of your scans or images.
+[**Images**](https://developer.pdf4me.com/docs/api/basic-functionality/create-image/) | Extract images from your document, can be any type of document.
+[**Create Pdf/A**](https://developer.pdf4me.com/docs/api/basic-functionality/pdfa/) | Create a archive conform PDF/A including xmp Metadata.
+[**Convert to PDF**](https://developer.pdf4me.com/docs/api/basic-functionality/convert-to-pdf/) | Convert your documents from any format to a proper PDF document.
+[**Stamp**](https://developer.pdf4me.com/docs/api/basic-functionality/stamp/) | Stamp your document with text or images.
+[**Rotate**](https://developer.pdf4me.com/docs/api/basic-functionality/rotate-pdf/) | Rotates pages in your document.
+[**Protect**](https://developer.pdf4me.com/docs/api/basic-functionality/protect/) | Protects or Unlocks your document with given password.
+[**Validation**](https://developer.pdf4me.com/docs/api/basic-functionality/validate/) | Validate your document for PDF/A compliance.
+[**Repair**](https://developer.pdf4me.com/docs/api/basic-functionality/repair/) | Repairs your document.
+[**Barcode**](https://developer.pdf4me.com/docs/api/basic-functionality/barcode/) | Reads all types of barcode embedded in document or creates them                                                    |
 
 ## Getting Started
 
@@ -48,3 +48,7 @@ fs.writeFileSync(
 ## Documentation
 
 Please visit our [documentation]() for more information about all the functionalities provided and on how to use pdf4me.
+
+
+#### PDF4me Consumer
+Those who are looking for PDF4me online tool can find it at [PDF4me.com](https://pdf4me.com/)
