@@ -1,3 +1,7 @@
+if (!process.env.PDF4ME_API_KEY) {
+  require('dotenv').config()
+}
+
 const pdf4me = require('../../src')
 const files = require('../files')
 const config = require('./config')
