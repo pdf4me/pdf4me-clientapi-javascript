@@ -1,4 +1,4 @@
-# pdf4me api client (preview) - the Node.js package for the Pdf4me Saas API
+# pdf4me api client - the Node.js package for the Pdf4me Saas API
 
 ![npm](https://img.shields.io/npm/v/pdf4me.svg) ![license](https://img.shields.io/github/license/mashape/apistatus.svg) ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg) ![Build](https://ynoox.visualstudio.com/_apis/public/build/definitions/2e29c2f0-3f4a-40e1-a4b1-1cc465571206/304/badge)
 
@@ -49,7 +49,7 @@ fs.writeFileSync(
 
 ## Documentation
 
-Please visit our [documentation]() for more information about all the functionalities provided and on how to use pdf4me.
+Please visit our [documentation](https://developer.pdf4me.com/docs/api/basic-functionality/) for more information about all the functionalities provided and on how to use pdf4me.
 
 
 #### PDF4me Consumer
