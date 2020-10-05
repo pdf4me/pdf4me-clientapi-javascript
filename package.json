@@ -1,6 +1,6 @@
 {
   "name": "pdf4me",
-  "version": "9.9.36",
+  "version": "9.9.37",
   "description": "Provides expert functionality to convert, optimize, compress, produce, merge, split, ocr, enrich, archive, print documents and PDFs.",
   "keywords": [
     "pdf",
@@ -24,6 +24,9 @@
   "main": "index.js",
   "types": "index.d.ts",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "mocha --reporter mocha-multi-reporters --reporter-options configFile=./tests/utils/reporter.json --timeout 120000 tests/**/*.spec.js",
     "examples": "node ./scripts/examples.js",
