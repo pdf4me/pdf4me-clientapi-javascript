@@ -1,6 +1,7 @@
 export interface Pdf4meClient {
   convertToPdf(): void
   convertFileToPdf(): void
+  convertFromPdf(): void
   extract(): void
   extractResources(): void
   extractPages(): void

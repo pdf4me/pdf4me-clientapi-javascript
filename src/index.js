@@ -2,6 +2,7 @@ const httpClient = require('./utils/httpClient')
 const defaultConfig = require('./config')
 // clients
 const convert = require('./clients/convertClient')
+const convertFromPdf = require('./clients/convertFromPdfClient')
 const extract = require('./clients/extractClient')
 const image = require('./clients/imageClient')
 const merge = require('./clients/mergeClient')
@@ -28,6 +29,7 @@ module.exports = {
     const apiClient = httpClient(pdf4meApiKey, config)
 
     convertClient = convert.createClient(apiClient)
+    convertFromPdfClient = convertFromPdf.createClient(apiClient)
     extractClient = extract.createClient(apiClient)
     imageClient = image.createClient(apiClient)
     mergeClient = merge.createClient(apiClient)
@@ -43,6 +45,7 @@ module.exports = {
     return Object.assign(
       {},
       convertClient,
+      convertFromPdfClient,
       extractClient,
       imageClient,
       mergeClient,

@@ -20,7 +20,7 @@ describe('convert operations', () => {
         },
       }
       const res = await p4mClient.convertToPdf(convertReq)
-
+      // console.log('res.document.docData', res.document.docData)
       expect(res.document.docData).to.not.be.null
       // save file
       files.saveBase64(

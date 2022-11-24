@@ -7,3 +7,4 @@ test-dev.js
 test-prod.js
 .env
 .npmrc
+.vs
