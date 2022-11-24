@@ -1,6 +1,6 @@
 {
   "name": "pdf4me",
-  "version": "9.10.0",
+  "version": "9.10.1",
   "description": "Provides expert functionality to convert, optimize, compress, produce, merge, split, ocr, enrich, archive, print documents and PDFs.",
   "keywords": [
     "pdf",
