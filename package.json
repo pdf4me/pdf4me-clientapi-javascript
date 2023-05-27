@@ -1,6 +1,6 @@
 {
   "name": "pdf4me-js",
-  "version": "9.10.6",
+  "version": "9.10.7",
   "description": "Provides expert functionality to convert, optimize, compress, produce, merge, split, ocr, enrich, archive, print documents and PDFs.",
   "keywords": [
     "pdf",
