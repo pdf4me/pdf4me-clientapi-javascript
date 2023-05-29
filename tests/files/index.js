@@ -32,6 +32,8 @@ module.exports = {
   picture_jpg: file('picture.jpg'),
   docx: file('wordDoc.docx'),
   powerPoint: file('PowerPoint.pptx'),
+  pdfForm: file('form.pdf'),
+  pdfFormData: file('pdf_form_data.json'),
   zip: file('zip.zip'),
   saveBase64: (filename, base64Data) => {
     const buffer = Buffer.from(base64Data, 'base64')

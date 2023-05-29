@@ -213,6 +213,11 @@ const examples = [
     path: './examples/basic-usage/stamp/textStamp.js',
     output: ['./examples/basic-usage/stamp/textStamp_result.pdf'],
   },
+  {
+    name: 'generateDocumentSingle',
+    path: './examples/basic-usage/generate/generateDocumentSingle.js',
+    output: ['./examples/basic-usage/generate/generateDocumentSingle.pdf'],
+  }
 ]
 
 let cmdIndex = 0

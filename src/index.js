@@ -14,6 +14,7 @@ const rotate = require('./clients/rotateClient')
 const split = require('./clients/splitClient')
 const stamp = require('./clients/stampClient')
 const validate = require('./clients/validateClient')
+const generateDocumentSingle = require('./clients/generateDocumentSingle')
 
 module.exports = {
   createClient: (pdf4meApiKey, configuration) => {
@@ -41,6 +42,7 @@ module.exports = {
     splitClient = split.createClient(apiClient)
     stampClient = stamp.createClient(apiClient)
     validateClient = validate.createClient(apiClient)
+    generateDocumentSingleClient = generateDocumentSingle.createClient(apiClient)
 
     return Object.assign(
       {},
@@ -56,7 +58,8 @@ module.exports = {
       rotateClient,
       splitClient,
       stampClient,
-      validateClient
+      validateClient,
+      generateDocumentSingleClient
     )
   },
 }
