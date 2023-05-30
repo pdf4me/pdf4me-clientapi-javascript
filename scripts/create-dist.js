@@ -34,7 +34,7 @@ fs.writeFileSync(
 // update useragent with current version in config.js
 $sh.sed(
   '-i',
-  'pdf4me-js/DEV',
-  'pdf4me-js/' + version,
+  'pdf4me/DEV',
+  'pdf4me/' + version,
   './dist/config.js'
 )

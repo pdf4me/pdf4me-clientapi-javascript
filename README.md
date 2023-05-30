@@ -29,7 +29,7 @@ To use pdf4me, you need a Api Key. You can get a free Api Key from our [develope
 
 ### Installation
 
-`npm install pdf4me-js`
+`npm install pdf4me`
 
 ### Basic Usage
 
