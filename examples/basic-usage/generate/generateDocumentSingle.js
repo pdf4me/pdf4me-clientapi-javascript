@@ -26,7 +26,7 @@ pdf4meClient
     console.log(generateDocumentSingleRes.Document)
     const pdfDocument = Buffer.from(generateDocumentSingleRes.Document.docData, 'base64')
     
-    fs.writeFileSync(path.join(__dirname, 'generateDocumentSingle_result.txt'), pdfDocument)
+    fs.writeFileSync(path.join(__dirname, 'generateDocumentSingle_result.pdf'), pdfDocument)
   })
   .catch(err => {
     console.error(err)
