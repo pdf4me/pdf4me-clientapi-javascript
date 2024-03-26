@@ -24,11 +24,27 @@ process.env.PDF4ME_API_KEY = apiKey
 
 const examples = [
   {
+    name: 'splitByBarcode',
+    path: './examples/basic-usage/barcode/splitByBarcode.js',
+    output: [
+      './examples/basic-usage/barcode/splitByBarcode_pdf1_result.pdf',
+      './examples/basic-usage/barcode/splitByBarcode_pdf2_result.pdf',
+    ],
+  },
+  {
     name: 'split',
     path: './examples/basic-usage/split/split.js',
     output: [
       './examples/basic-usage/split/split_pdf1_result.pdf',
       './examples/basic-usage/split/split_pdf2_result.pdf',
+    ],
+  },
+  {
+    name: 'splitByText',
+    path: './examples/basic-usage/split/splitByText.js',
+    output: [
+      './examples/basic-usage/split/splitByText_pdf1_result.pdf',
+      './examples/basic-usage/split/splitByText_pdf2_result.pdf',
     ],
   },
   {

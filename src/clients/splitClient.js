@@ -54,6 +54,31 @@ module.exports = {
             })
         })
       },
+      splitByText: splitReq => {
+        return new Promise((resolve, reject) => {
+          api
+            .postJson('/Split/SplitByText', splitReq)
+            .then(res => {
+              resolve(res)
+            })
+            .catch(error => {
+              reject(error)
+            })
+        })
+      },
+      splitByBarcode: splitReq => {
+        return new Promise((resolve, reject) => {
+          api
+            .postJson('/Barcode/SplitByBarcode', splitReq)
+            .then(res => {
+              resolve(res)
+            })
+            .catch(error => {
+              reject(error)
+            })
+        })
+      },
+      
     }
   },
 }

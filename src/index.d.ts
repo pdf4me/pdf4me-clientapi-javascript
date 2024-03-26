@@ -29,4 +29,5 @@ export interface Pdf4meClient {
   textStamp(): void
   validate(): void
   validateDocument(): void
+  splitByBarcode(): void
 }
