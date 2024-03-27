@@ -40,6 +40,14 @@ const examples = [
     ],
   },
   {
+    name: 'splitByTextCoordinates',
+    path: './examples/basic-usage/split/splitByTextCoordinates.js',
+    output: [
+      './examples/basic-usage/split/splitByTextCoordinates_pdf1_result.pdf',
+      './examples/basic-usage/split/splitByTextCoordinates_pdf2_result.pdf',
+    ],
+  },
+  {
     name: 'splitByText',
     path: './examples/basic-usage/split/splitByText.js',
     output: [
