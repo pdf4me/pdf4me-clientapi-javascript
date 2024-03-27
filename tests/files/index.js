@@ -35,6 +35,7 @@ module.exports = {
   pdfForm: file('form.pdf'),
   pdfFormData: file('pdf_form_data.json'),
   zip: file('zip.zip'),
+  barcode: file('barcode_pdf.pdf'),
   saveBase64: (filename, base64Data) => {
     const buffer = Buffer.from(base64Data, 'base64')
     fs.writeFileSync(path.join(testoutputDir, filename), buffer)
