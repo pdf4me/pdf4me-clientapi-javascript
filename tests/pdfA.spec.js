@@ -41,7 +41,7 @@ describe('pdfA operations', () => {
       )
     })
     it('createPdfA pdfA1a with buffer input', async () => {
-      const pdfARes = await p4mClient.createPdfA('pdfA1b', {
+      const pdfARes = await p4mClient.createPdfA('pdfA1a', {
         data: files.pdf1.getFileBuffer(),
         fileName: 'pdf1.pdf',
       })
