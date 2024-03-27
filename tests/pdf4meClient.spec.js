@@ -59,6 +59,8 @@ describe('pdf4me Client', () => {
     expect(p4m.split).to.be.a('function')
     expect(p4m.splitByPageNr).to.be.a('function')
     expect(p4m.splitRecurring).to.be.a('function')
+    expect(p4m.splitByText).to.be.a('function')
+    expect(p4m.splitByBarcode).to.be.a('function')
 
     // stampClient
     expect(p4m.stamp).to.be.a('function')
